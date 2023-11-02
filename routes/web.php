@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\GalleryActivity;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/gallery',function () {
+    $galleries = GalleryActivity::all();
+
+   return view('components.pages.gallery')
+                ->with('galleries', $galleries);
+});
+
+
+
