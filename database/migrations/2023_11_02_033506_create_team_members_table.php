@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name',50);
             $table->string('image_url',400);
-            $table->string('qualification',150);
+            $table->string('qualification',250);
             $table->foreignUuid('division_id')
                 ->constrained('divisions')
                 ->onDelete('cascade')

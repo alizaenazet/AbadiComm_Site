@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('portfolios', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title',100);
-            $table->string('content',400);
-            $table->string('promoter',100);
+            $table->string('title',250);
+            $table->string('content',5000);
+            $table->string('promoter',150);
             $table->date('date');
             $table->timestamps();
         });

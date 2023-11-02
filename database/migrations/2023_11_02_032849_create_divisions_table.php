@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('divisions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name',30);
+            $table->string('name',50);
             $table->timestamps();
         });
     }

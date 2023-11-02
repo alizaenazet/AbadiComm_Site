@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('gallery_activities', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('image_url',400);
-            $table->string('content',250);
+            $table->string('content',5000);
             $table->timestamps();
         });
     }
