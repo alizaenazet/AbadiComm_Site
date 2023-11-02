@@ -8,7 +8,7 @@ export default {
   ],
   theme: {
     colors:{
-      'primary': '#001C55',
+      'primary': '#0081AF',
       'secondary': '#DD1C1A',
       'accent': '#FFCF56',
       'error': '#F9B3D1',
@@ -19,7 +19,7 @@ export default {
       'serif': ['Gabarito','serif']
     },
     fontSize: {
-      'headline-lg': ['72px'],
+      'headline-lg': ['72px','80px'],
       'h1-lg': ['48px'],
       'h2-lg': ['32px'],
       'h3-lg': ['24px'],
