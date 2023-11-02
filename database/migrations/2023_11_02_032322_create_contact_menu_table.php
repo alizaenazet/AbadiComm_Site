@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contact_menu', function (Blueprint $table) {
+        Schema::create('contact_menus', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name',50);
+            $table->string('name',100);
             $table->string('image_url',400);
             $table->string('url_link',400);
             $table->timestamps();
