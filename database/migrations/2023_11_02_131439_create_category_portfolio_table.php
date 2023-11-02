@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portfolios_categories', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+        Schema::create('category_portfolio', function (Blueprint $table) {
+            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
             $table->foreignUuid('category_id')
                 ->constrained('categories')
                 ->onDelete('cascade')
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portfolios_categories');
+        Schema::dropIfExists('category_portfolio');
     }
 };
