@@ -3,5 +3,5 @@
       Navigation bar
   </x-slot>
 
-  <h1>inside body</h1>
+  <x-welcome />
 </x-app-layout>
