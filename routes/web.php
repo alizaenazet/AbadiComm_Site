@@ -25,5 +25,8 @@ Route::get('/gallery',function () {
                 ->with('galleries', $galleries);
 });
 
+Route::get('/partner', function () {
+    return view('components.pages.partner');
+});
 
 
