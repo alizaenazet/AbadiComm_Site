@@ -11,3 +11,12 @@
 ### Design & Concept
 [Figma design and concept](https://www.figma.com/file/yWBGZDHFZvYXPsu17JGKwK/Abadicomm?type=whiteboard&node-id=0%3A1&t=fHzGbr6CEWZI5blq-1)
 
+### How to run
+- open terminal of the project
+- npm install
+- composer install
+- cp .env.example .env
+- php artisan key:generate
+- php artisan serve
+- npm run dev
+
