@@ -12,8 +12,8 @@
         <p>Portfolio</p>
     </a>
     <a class="hover:border-b-2 hover:border-accent"
-     href="/galery">
-        <p>Galery</p>
+     href="/gallery">
+        <p>Gallery</p>
     </a>
     <a class="hover:border-b-2 hover:border-accent"
      href="/articles">
