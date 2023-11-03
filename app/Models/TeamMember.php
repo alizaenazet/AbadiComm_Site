@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< Updated upstream
 use App\Models\Devision;
+=======
+use App\Models\Division;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+>>>>>>> Stashed changes
 
 class TeamMember extends Model
 {
@@ -18,4 +23,11 @@ class TeamMember extends Model
         'division_id'
     ];
 
+<<<<<<< Updated upstream
+=======
+    public function division(){
+        return $this->belongsTo(Division::class);
+    }
+
+>>>>>>> Stashed changes
 }

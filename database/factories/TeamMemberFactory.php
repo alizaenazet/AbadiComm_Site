@@ -19,7 +19,11 @@ class TeamMemberFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+<<<<<<< Updated upstream
             'image_url' => 'https://image.dummyjson.com/400x200/'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
+=======
+            'image_url' => 'https://random.imagecdn.app/500/300'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
+>>>>>>> Stashed changes
             'qualification' =>  "sertified as ".fake()->titleMale(),
         ];
     }
