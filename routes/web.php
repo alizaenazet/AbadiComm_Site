@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\GalleryActivity;
+use App\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +29,13 @@ Route::get('/gallery',function () {
 Route::get('/partner', function () {
     return view('components.pages.partner');
 });
+
+Route::get('/team-member', function () {
+    $members = TeamMember::all();
+
+    return view('components.pages.team-member')
+                    ->with('members', $members);
+});
+
 
 
