@@ -18,7 +18,7 @@ class ContactMenuFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'image_url'=> 'https://image.dummyjson.com/400x200/'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
+            'image_url'=> 'https://random.imagecdn.app/100/100'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
             'url_link'=> 'https://www.instagram.com/'.fake()->lastName()
         ];
     }
