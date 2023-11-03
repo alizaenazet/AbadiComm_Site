@@ -17,7 +17,11 @@ class PortfolioImageFactory extends Factory
     public function definition(): array
     {
         return [
+<<<<<<< Updated upstream
             'image_url' => 'https://image.dummyjson.com/400x200/'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
+=======
+            'image_url' => 'https://random.imagecdn.app/300/300'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
+>>>>>>> Stashed changes
         ];
     }
 }
