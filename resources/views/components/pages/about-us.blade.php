@@ -1,4 +1,4 @@
-<div style="padding-left:inherit; padding-right:inherit" class="flex flex-col justify-center items-center gap-[39px]">
+<div  class="flex flex-col justify-center items-center gap-[39px]">
     <div style="padding-left:inherit; padding-right:inherit" class="flex justify-center">
         <p class="text-h3-lg font-sans max-w-[80%]">
             2the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -25,20 +25,45 @@
     </div>
 
 </div>
-<div style="padding-left:inherit; padding-right:inherit">
+</div>
+
+<div>
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our clients</h1>
-    <div style="padding-left:inherit; padding-right:inherit"  class="py-[31px] w-screen bg-primary flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 ">
-            <img src="https://random.imagecdn.app/300/300" alt="" class= "w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+    <div"  class="py-[31px] w-screen bg-primary flex flex-center justify-center">
+            <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 "> 
+                <img src="https://random.imagecdn.app/300/300" alt="" class= "w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md ">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+                        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+            </div>        
     </div>
 </div>
 
+
+<div class="flex flex-col items-center justify-center gap-3">
+    <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our team</h1>
+    <div class="flex  justify-center items-center flex-row flex-wrap gap-2">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+    </div>
+
+    <a href="/team"  class=" px-1   ">
+        <h3 style="padding-left: 1rem; padding-right: 1rem;" class="border-b-4 text-accent border-accent hover:border-accent font-sans text-h3-lg hover:text-primary font-bold  hover:-translate-y-1 hover:scale-110 ">See details</h3>
+    </a>
 </div>
