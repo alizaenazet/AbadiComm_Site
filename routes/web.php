@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Category;
 use App\Models\GalleryActivity;
+use App\Models\Portfolio;
+use App\Models\PortfolioImage;
 use App\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +38,12 @@ Route::get('/team-member', function () {
 
     return view('components.pages.team-member')
                     ->with('members', $members);
+});
+
+Route::get('/list-portfolio',function(){
+    $portfolios = Portfolio::all();
+    return view('components.pages.list-portfolio')
+                    ->with('portfolios', $portfolios);
 });
 
 
