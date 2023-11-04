@@ -28,4 +28,8 @@ class Portfolio extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function year(){
+        return date('Y', strtotime($this->date));
+    }
+
 }
