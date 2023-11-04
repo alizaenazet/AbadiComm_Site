@@ -7,7 +7,7 @@
   <title>{{$title}}</title>
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body class="h-screen w-screen pt-[30px] px-[156px] pb-[30px] bg-white flex-col justify-start items-center inline-flex" style="gap: {{$gap}}">
+<body class="h-max w-screen pt-[30px] px-[156px] pb-[30px] bg-white flex-col justify-start items-center inline-flex" style="gap: {{$gap}}">
     <header class="w-full ">
         <x-navbar />
     </header>
