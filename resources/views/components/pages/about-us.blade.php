@@ -29,7 +29,7 @@
 
 <div>
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our clients</h1>
-    <div class="py-[31px] w-screen bg-primary flex flex-center justify-center">
+    <div"  class="py-[31px] w-screen bg-primary flex flex-center justify-center">
             <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 "> 
                 <img src="https://random.imagecdn.app/300/300" alt="" class= "w-32 h-32 rounded-md">
                         <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md ">
