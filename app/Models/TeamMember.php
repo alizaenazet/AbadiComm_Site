@@ -18,4 +18,7 @@ class TeamMember extends Model
         'division_id'
     ];
 
+    public function division(){
+        return $this->belongsTo(Division::class);
+    }
 }
