@@ -27,7 +27,6 @@ class PortfolioCard extends Component
      */
     public function render(): View|Closure|string
     {
-        // return view('components.portfolio-card');
-        return "<div>COK </div>";
+        return view('components.portfolio-card');
     }
 }
