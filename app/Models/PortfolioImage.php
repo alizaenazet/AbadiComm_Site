@@ -14,4 +14,8 @@ class PortfolioImage extends Model
         'image_url',
         'portfolio_id'
     ];
+
+    public function portfolio(){
+        return $this->belongsTo(Portfolio::class);
+    }
 }
