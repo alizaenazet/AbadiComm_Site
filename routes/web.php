@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PortfolioController;
 use App\Models\Category;
 use App\Models\GalleryActivity;
 use App\Models\Portfolio;
@@ -45,30 +46,16 @@ Route::get('/list-portfolio',function(){
     $portfolios = Portfolio::all();
     $categories = Category::all();
     // $years = collectPortfoliosYear($portfolios);
-    $years = array(2023,2022,2021);
+    $years = range(2018,date("Y"));
     return view('components.pages.list-portfolio')
                     ->with('portfolios', $portfolios)
                     ->with('years', $years)
                     ->with('categories', $categories)
                     ->with('categoriesFilterList','')
                     ->with('categoriesFilterNameList', [])
-                    ->with('yearFilterList', '');
+                    ->with('yearFilterList','');
 });
 
-function collectPortfoliosYear($portfolios,$years = []) {
-    $years = array(1,2,3);
-    foreach ($portfolios as $portfolio) {
-        if (!in_array($portfolio->year(),$years)) {
-            $years = array_push($years,$portfolio->year());
-        }
-    }
-    return $years;
-}
 
-Route::put('/list-portfolio/filter',function (Request $req)  {
-    if (strlen($req['categoriesFilter']) > 1) {
-        return view('welcome');
-    }
-    
-    return view('components.pages.partner');
-});
+
+Route::put('/list-portfolio/filter',[PortfolioController::class,'filter']);
