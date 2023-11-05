@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (){
+    $members = TeamMember::all();
+    return view('welcome')->with('members', $members);
 });
 
 Route::get('/gallery',function () {
