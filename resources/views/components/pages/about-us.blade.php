@@ -204,7 +204,8 @@
 <div>
     <h1 class="text-h1-lg font-serif font-bold text-center">Our Works</h1>
     <a href="/team-member" class=" px-1   ">
-        <h3 class="border-b-4 text-accent  border-accent hover:border-accent font-sans text-h3-lg hover:text-primary font-bold  hover:-translate-y-1 hover:scale-110 ">
+
+        <h3 class="border-b-4 text-accent border-accent hover:border-accent font-sans text-h3-lg hover:text-primary font-bold  hover:-translate-y-1 hover:scale-110 ">
             See details</h3>
     </a>
 </div>

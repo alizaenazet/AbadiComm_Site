@@ -56,6 +56,7 @@ Route::get('/list-portfolio',function(){
                     ->with('yearFilterList','');
 });
 
+
 Route::post('/whatsapp-redirect', function (Request $req) {
     $req->validate([
         'nama'=> 'required',
