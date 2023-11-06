@@ -8,12 +8,12 @@
 
 <div class="flex flex-row gap-9">
     <a class="hover:border-b-2 hover:border-accent"
-     href="/portfolio">
+     href="/list-portfolio">
         <p>Portfolio</p>
     </a>
     <a class="hover:border-b-2 hover:border-accent"
-     href="/galery">
-        <p>Galery</p>
+     href="/gallery">
+        <p>Gallery</p>
     </a>
     <a class="hover:border-b-2 hover:border-accent"
      href="/articles">
