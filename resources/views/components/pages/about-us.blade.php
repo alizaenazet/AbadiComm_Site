@@ -204,6 +204,7 @@
 <div>
     <h1 class="text-h1-lg font-serif font-bold text-center">Our Works</h1>
     <a href="/team-member" class=" px-1   ">
+
         <h3 class="border-b-4 text-accent border-accent hover:border-accent font-sans text-h3-lg hover:text-primary font-bold  hover:-translate-y-1 hover:scale-110 ">
             See details</h3>
     </a>
@@ -219,10 +220,13 @@
             <p> repellat adipisci eligendi. Dolores dolor est doloribus iure ipsum dolore totam. Numquam
                 occaecati quia qui. Neque cum eum earum incidunt a provident rerum. Assumenda nobis beatae
             </p>
-            <button type="button"
+            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button">
+                Take a step
+              </button>
+            {{-- <button type="button"
                 class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 Take a step
-            </button>
+            </button> --}}
         </div>
     </div>
 </div>
