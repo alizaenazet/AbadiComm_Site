@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Category;
@@ -56,7 +55,13 @@ class PortfolioController extends Controller
             }
         }
        
-        
+        if (!empty($data['yearsFilter'])) {
+            $portfolioById = Portfolio::whereNotIn('id',$categoriesIdFilter)
+                ->whereYear('date',$yearsIdFilter)->get();
+            if (!empty($portfolioById)) {
+                array_push($portfolios,...$portfolioById);
+            }
+        }
         
         $years = range(2018,date("Y"));
         return view('components.pages.list-portfolio')

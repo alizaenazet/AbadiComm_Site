@@ -45,7 +45,6 @@ Route::get('/team-member', function () {
 Route::get('/list-portfolio',function(){
     $portfolios = Portfolio::all();
     $categories = Category::all();
-    // $years = collectPortfoliosYear($portfolios);
     $years = range(2018,date("Y"));
     return view('components.pages.list-portfolio')
                     ->with('portfolios', $portfolios)
