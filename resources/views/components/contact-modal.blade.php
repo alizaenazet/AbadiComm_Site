@@ -6,7 +6,7 @@
                   </svg>
                   <span class="sr-only">Close modal</span>
               </button>
-              <div style="padding: 18px 8px " class="w-full flex flex-col justify-center items-center flex-wrap p-6 gap-6 lg:px-8">
+              <div  class="w-full flex flex-col justify-center items-center flex-wrap p-6 gap-6 lg:px-8">
                 {{ $slot }}
               </div>
           </div>

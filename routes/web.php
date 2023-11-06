@@ -56,6 +56,69 @@ Route::get('/list-portfolio',function(){
                     ->with('yearFilterList','');
 });
 
+Route::post('/whatsapp-redirect', function (Request $req) {
+    $req->validate([
+        'nama'=> 'required',
+        'opsiInstansi'=> 'required',
+        'opsiKeperluan' => 'required',
+    ]);
+
+    if ($req['opsiInstansi'] != '0') {
+        $req->validate([
+            'nama_instansi'=> 'required',
+        ]);
+    }
+
+    if ($req['opsiKeperluan'] == '0') {
+        $req->validate([
+            'keperluan'=> 'required',
+        ]);
+    }
+    $data = $req;
+    $namaInstansi = "";
+    $keperluan = "";
+
+    if ($data['opsiInstansi'] != "0") {
+        $namaInstansi = $data['nama_instansi'];
+    }
+
+    switch ($data['opsiKeperluan']) {
+        case '0':
+            $keperluan = $data['keperluan'];
+            break;
+        case '1':
+            $keperluan = "Membuat event";
+            break;
+        case '2':
+            $keperluan = "Kebutuhan event";
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+
+    $pesanInstansi = 'Perkenalkan, saya '.$data['nama'];
+    $pesanKeperluan = "saya ingin ".$keperluan.".";
+    $pesanInformasiTambahan = "";
+
+    if ($data['opsiInstansi'] != '0') {
+        $pesanInstansi = $pesanInstansi . " dari ". $namaInstansi . ".";
+    }else{
+        $pesanInstansi = $pesanInstansi . ".";
+    }
+
+    if (!empty($data['addtional_information'])) {
+        $pesanInformasiTambahan = "Informasi tambahan:%0A".$data['addtional_information'].".";
+    }
+
+
+    $message = "Selamat pagi, siang, atau malam. Semoga Anda sehat dan bahagia.%0A%0A".
+        $pesanInstansi." ".$pesanKeperluan."%0A%0A".$pesanInformasiTambahan."%0A Senang dapat menghubungi anda.%0ATer Terimakasih"
+    ;
+    $message = str_replace(" ","%20",$message);
+    return redirect()->away('https://wa.me/081331720920?text='.$message);
+});
 
 
 Route::put('/list-portfolio/filter',[PortfolioController::class,'filter']);
