@@ -1,20 +1,22 @@
 <x-app-layout gap="45px" title="ListPortfolio">
-    <div class="w-full h-full px-7 py-[18px] px-[20px] bg-white rounded-lg shadow flex-col justify-start items-start gap-2.5 inline-flex">
+    <div class="w-full h-full px-7 py-[18px] px-[20px] bg-white rounded-lg shadow flex-col justify-start items-start gap-6 inline-flex">
         <div class="h-8 justify-start items-start gap-3.5 inline-flex">
            
                 <select id="categoriesYear">
+                    <option  disabled selected>tahun </option>
                     @foreach ($years as $year)
                     <option  value={{$year}}>{{$year}}</option>
                     @endforeach
                 </select>
                 <select id="categoriesSelect">
+                    <option  disabled selected>kategori </option>
                     @foreach ($categories as $category)
                     <option id={{$category->id}} value={{$category->id}}>{{$category->name}}</option>
                     @endforeach
                 </select>
         </div>
 
-        <div  id="list-category" class="w-full h-[90px] p-2.5 rounded-md justify-start items-start gap-2.5 inline-flex">
+        <div  id="list-category" class="w-full min-h-max p-2.5 rounded-md justify-start items-start gap-2.5 flex flex-row flex-wrap">
             @forelse ($categoriesFilterNameList as $filterCagetory)
             <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex">
                 <div class="text-black text-base font-normal font-sans">{{$filterCagetory}}</div>
@@ -22,6 +24,7 @@
             @empty
                 {{-- Do noting --}}
             @endforelse
+
             @if ($yearFilterList != '')
             @forelse (explode(',',$yearFilterList) as $yearList)
             <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex">
@@ -55,8 +58,7 @@
 
            <div class="flex flex-col gap-1">
             <div class="w-full h-fit">
-                <img class="object-cover rounded-lg flex-col"
-                    src={{ $portfolio->portfolioImage[0]->image_url ?? '' }} alt="" />
+                <div class="w-full h-[273px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div>
                 <p class="text-black text-h3-lg font-bold font-serif">{{ $portfolio->title }}</p>
             </div>
 
