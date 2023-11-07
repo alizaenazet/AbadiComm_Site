@@ -7,6 +7,37 @@
             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
     </div>
+    <div class="h-max w-full flex flex-row flex-wrap justify-center items-center gap-4">
+    @foreach ($globalPortfolios as $globalPortfolio)
+    <div class="flex flex-wrap flex-col w-[40%] gap-y-3 justify-between">
+
+        <div class="flex flex-col gap-1">
+         <div class="w-full h-fit">
+             <img class="object-cover rounded-lg flex-col"
+                 src={{ $globalPortfolio->portfolioImage[0]->image_url ?? '' }} alt="" />
+             <p class="text-black text-h3-lg font-bold font-serif">{{ $globalPortfolio->title }}</p>
+         </div>
+
+         <div>
+             <div class="w-full h-auto flex flex-row flex-wrap gap-x-1 gap-y-2 " >
+                 @foreach ($globalPortfolio->categories as $category)
+                     <x-category name='{{ $category->name }}' />
+                 @endforeach
+             </div>
+             <p class="font-sans text-normal-lg w-full">
+                 {{ $globalPortfolio->year() }}, {{ $globalPortfolio->promoter }}
+             </p>
+         </div>
+        </div>
+
+         <button type="button" style="padding: 2px 6px"
+             class="border-2 w-fit  px-8 border-blue-500 font-medium rounded-lg text-center ">
+             See Detail
+         </button>
+
+     </div>
+    @endforeach
+    </div>
 
 
     <div class=" w-full flex flex-row flex-wrap justify-center gap-4">
