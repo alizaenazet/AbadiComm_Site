@@ -4,7 +4,7 @@
   <x-welcome />
 
   <x-pages.about-us/>
+  <x-pages.welcome-gallery/>
   <x-pages.service/>
-  
   <x-pages.welcome-portfolio/>
 </x-app-layout>
