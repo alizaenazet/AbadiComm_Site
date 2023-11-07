@@ -251,13 +251,12 @@
             <p> repellat adipisci eligendi. Dolores dolor est doloribus iure ipsum dolore totam. Numquam
                 occaecati quia qui. Neque cum eum earum incidunt a provident rerum. Assumenda nobis beatae
             </p>
-            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button">
+            <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button">
                 Take a step
               </button>
-            {{-- <button type="button"
-                class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Take a step
-            </button> --}}
+            <button data-modal-target="another-modal" data-modal-toggle="another-modal" class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button">
+                tes
+              </button>
         </div>
     </div>
 </div>
