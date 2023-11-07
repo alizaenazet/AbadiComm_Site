@@ -92,7 +92,7 @@
             class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
     </div>
 
-    <a href="/team" class=" px-1   ">
+    <a href="/team-member" class=" px-1   ">
         <h3 style="padding-left: 1rem; padding-right: 1rem;"
             class="border-b-4 text-accent border-accent hover:border-accent font-sans text-h3-lg hover:text-primary font-bold  hover:-translate-y-1 hover:scale-110 ">
             See details</h3>

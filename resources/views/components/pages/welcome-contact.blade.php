@@ -1,7 +1,5 @@
-<div class="flex flex-row gap-[23px]">
-    <div class="flex-1 ">
-        <img class="object-cover h-full" src="https://random.imagecdn.app/300/300" alt="">
-    </div>
+<div class="flex flex-row items-center gap-[23px]">
+    <div class="flex-1 bg-contain h-[456px]" style="background-image: url(https://random.imagecdn.app/300/300)"></div>
     <div class="flex-1 flex flex-col gap-6">
         <h1 class="text-h1-lg font-serif">Be Our Partner</h1>
         <p> repellat adipisci eligendi. Dolores dolor est doloribus iure ipsum dolore totam. Numquam
