@@ -56,6 +56,10 @@ Route::get('/list-portfolio',function(){
                     ->with('yearFilterList','');
 });
 
+Route::get('/portfolio/{portfolioId}', function (string $portfolioId){
+    $portfolio = Portfolio::findOrFail($portfolioId);
+    return view('components.pages.portfolio')->with('portfolio', $portfolio);
+});
 Route::post('/whatsapp-redirect/contact', function (Request $req) {
     $req->validate([
         'nama'=> 'required',
