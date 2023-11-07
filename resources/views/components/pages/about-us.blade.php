@@ -16,10 +16,7 @@
             <h3 class="w-full text-h3-lg mb-2 text-2xl font-bold font-serif tracking-tight dark:text-white text-white">
                 Visi</h3>
             <p class="font-sans text-normal-lg text-white dark:text-gray-400">
-                the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the
-                short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the short
-                description about the company Lorem ipsum dolor sit Here are the biggest enterprise technology
-                acquisitions of 2021 so far, in reverse chronological order.
+                Menampilkan dan mewujudkan setiap moment sebagai arena tumbuhnya sebuah perusahaan, terciptanya image positif di masyarakat dan tercapainya value yang telah ditargetkan.
             </p>
         </div>
         <div
@@ -27,10 +24,7 @@
             <h3 class="w-full text-h3-lg mb-2 text-2xl font-bold font-serif tracking-tight dark:text-white text-white">
                 Misi</h3>
             <p class="font-sans text-normal-lg text-white dark:text-gray-400">
-                the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the
-                short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the short
-                description about the company Lorem ipsum dolor sit Here are the biggest enterprise technology
-                acquisitions of 2021 so far, in reverse chronological order.</p>
+                Bersama Abadicomm, kami siap memberikan pelayanan spesial bagi setiap klien, dengan pendekatan human yang saling menguntungkan.
         </div>
         <div
             class="flex flex-col justify-center items-center flex-wrap  px-[43px] pt-[20px] pb-[58px]  max-w-[22rem] p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary flex-">
@@ -46,18 +40,13 @@
 
 <div>
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our clients</h1>
-    <div class="py-[31px] w-screen bg-primary flex flex-center justify-center">
+    <div class="py-[25px] w-screen bg-primary flex flex-center justify-center">
         <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 ">
-            <img src="https://random.imagecdn.app/300/300" alt="" class= "w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md ">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
-            <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
+            <div class="w-32 h-32 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_surabaya.svg)"></div>
+            <div class="w-32 h-32 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_bali_logo.svg)"></div> 
+            <div class="w-32 h-32 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_pasuruan.svg)"></div> 
+            <div class="w-32 h-32 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_jateng_logo.svg)"></div> 
+            <div class="w-32 h-32 bg-cover rounded-sm" style="background-image: url(/images/pemkab_pamekasan.svg)"></div> 
         </div>
     </div>
 </div>
@@ -66,30 +55,10 @@
 <div class="flex flex-col items-center justify-center gap-3">
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our team</h1>
     <div class="flex  justify-center items-center flex-row flex-wrap gap-2">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
-        <img src="https://random.imagecdn.app/300/300" alt=""
-            class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        @foreach ($globalTeamMembers as $teamMember)
+            <img src={{$teamMember->image_url}} alt=""
+                class="w-32 h-32 rounded-md hover:-translate-y-1 hover:scale-400">
+        @endforeach
     </div>
 
     <a href="/team-member" class=" px-1   ">
