@@ -56,7 +56,6 @@ Route::get('/list-portfolio',function(){
                     ->with('yearFilterList','');
 });
 
-
 Route::post('/whatsapp-redirect/contact', function (Request $req) {
     $req->validate([
         'nama'=> 'required',
@@ -66,7 +65,7 @@ Route::post('/whatsapp-redirect/contact', function (Request $req) {
 
     if ($req['opsiInstansi'] != '0') {
         $req->validate([
-            'nama_instansi'=> 'required',
+            'namaInstansi'=> 'required',
         ]);
     }
 

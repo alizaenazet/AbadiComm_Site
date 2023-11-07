@@ -27,25 +27,15 @@
 
 
 <!-- Modal toggle -->
-<button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class=" px-[10px] py-[8px] text-gray-900 w-max  bg-white border-2 border-primary focus:outline-none hover:bg-gray-100 focus:ring-4 hover:border-accent focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+<button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class=" px-[10px] py-[8px] text-gray-900 w-max  bg-white border-2 border-primary focus:outline-none hover:bg-gray-100 focus:ring-4 hover:border-accent focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
     Contact us
   </button>
-  
-  <!-- Main modal -->
-  <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-md max-h-full">
 
-<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
-        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-        </svg>
-        <span class="sr-only">contact us</span>
-    </button>
-    
+  <!-- Main modal -->
+  <div id="contact-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
 <x-contact-modal >
     {{-- <div class="flex flex-col gap-4"> --}}
-            <form class="w-full h-max flex flex-col gap-4 px-[20px] py-[35px]" action="/whatsapp-redirect" method="POST">
+            <form class="w-full h-max flex flex-col gap-4 px-[20px] py-[35px]" action="/whatsapp-redirect/contact" method="POST">
                 @csrf
                 
             <div>
@@ -60,8 +50,8 @@
                     <option value="2">Pemerintahan</option>
                 </select>    
             </div>
-            <div id="nama_instansi" class="hidden">
-                <input type="text" id="nama_instansi_field" name="nama_instansi" class="bg-gray-50 border-2 border-primary text-gray-900 text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-accent dark:focus:border-accent invalid:text-pink-600 invalid:border-pink-500 " placeholder="nama instansi" >
+            <div id="nama-instansi" class="hidden">
+                <input type="text" id="nama-instansi-field" name="namaInstansi" class="bg-gray-50 border-2 border-primary text-gray-900 text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-accent dark:focus:border-accent invalid:text-pink-600 invalid:border-pink-500 " placeholder="nama instansi" >
             </div>
             <div>
                 <label for="keperluan_event" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keperluan</label>
@@ -72,8 +62,8 @@
                 </select>    
             </div>
     
-            <div id="keperluan_edit" class="hidden">
-                <input type="text" name="keperluan" id="keperluan_edit_field" class="bg-gray-50 border-2 border-primary text-gray-900 text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-accent dark:focus:border-accent invalid:text-pink-600 invalid:border-pink-500 " placeholder="Keperluan anda" >
+            <div id="keperluan-edit" class="hidden">
+                <input type="text" name="keperluan" id="keperluan-edit-field" class="bg-gray-50 border-2 border-primary text-gray-900 text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-accent dark:focus:border-accent invalid:text-pink-600 invalid:border-pink-500 " placeholder="Keperluan anda" >
             </div>
             
             <div>
@@ -89,28 +79,29 @@
     
 
 </x-contact-modal >
-  
+</div>
+
 
 <script>
     $(document).ready(function () {
 
         if ($('#keperluan_event').val() == "0") {
-            $('#keperluan_edit').show();
+            $('#keperluan-edit').show();
         }
 
         if ($('#instansi').val() != "0") {
-            $('#nama_instansi').show();
+            $('#nama-instansi').show();
         }
 
         $('#instansi').change(function (e) { 
             e.preventDefault();
             var instansiValue = $('#instansi').val();
             if (instansiValue != '0') {
-                $('#nama_instansi').show();
-                $('#nama_instansi_field').prop("required", true);;
-            }else if ($('#nama_instansi').is(':visible')) {
-                $('#nama_instansi_field').prop("required", false);;
-                $('#nama_instansi').hide();
+                $('#nama-instansi').show();
+                $('#nama-instansi-field').prop("required", true);;
+            }else if ($('#nama-instansi').is(':visible')) {
+                $('#nama-instansi-field').prop("required", false);;
+                $('#nama-instansi').hide();
             }
         });
 
@@ -118,11 +109,11 @@
             e.preventDefault();
             var keperluanValue = $('#keperluan_event').val();
             if (keperluanValue == "0") {
-                $('#keperluan_edit_field').prop("required", true);;
-                $('#keperluan_edit').show();
-            }else if( $('#keperluan_edit').is(':visible')){
-                $('#keperluan_edit_field').prop("required", false);;
-                $('#keperluan_edit').hide();
+                $('#keperluan-edit-field').prop("required", true);;
+                $('#keperluan-edit').show();
+            }else if( $('#keperluan-edit').is(':visible')){
+                $('#keperluan-edit-field').prop("required", false);;
+                $('#keperluan-edit').hide();
             }
         });
     });
