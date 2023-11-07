@@ -8,5 +8,5 @@
   {{-- @foreach ($members as $member)
   <x-pages.about-us imageUrl="{{$member->image_url}}" />
   @endif --}}
-  
+  <x-pages.welcome-portfolio/>
 </x-app-layout>
