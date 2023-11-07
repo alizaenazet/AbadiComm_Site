@@ -57,7 +57,7 @@ Route::get('/list-portfolio',function(){
 });
 
 
-Route::post('/whatsapp-redirect', function (Request $req) {
+Route::post('/whatsapp-redirect/contact', function (Request $req) {
     $req->validate([
         'nama'=> 'required',
         'opsiInstansi'=> 'required',
@@ -119,6 +119,22 @@ Route::post('/whatsapp-redirect', function (Request $req) {
     ;
     $message = str_replace(" ","%20",$message);
     return redirect()->away('https://wa.me/081331720920?text='.$message);
+});
+
+Route::post('whatsapp-redirect/partner', function (Request $req) {
+    $req->validate([
+        'nama'=> 'required',
+        'namaPerusahaanInstitusi' => 'required',
+        'opsiPenawaran' => 'required',
+    ]);
+
+    if ($req['opsiPenawaran'] == '0') {
+        $req->validate([
+            'penawaran' => 'required'
+        ]);
+    }
+
+    return $req;
 });
 
 
