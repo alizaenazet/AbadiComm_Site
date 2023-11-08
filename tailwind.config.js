@@ -20,7 +20,7 @@ export default {
     },
     fontSize: {
       'headline-lg': ['72px','80px'],
-      'h1-lg': ['48px'],
+      'h1-lg': ['48px','43px'],
       'h2-lg': ['32px'],
       'h3-lg': ['24px'],
       'medium-lg': ['18px'],
