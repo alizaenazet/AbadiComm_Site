@@ -43,7 +43,7 @@
         <a href="/partner" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Partner</a>
       </li>
       <li>
-        <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="   w-max  bg-white    " type="button">
+        <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="w-max bg-white " type="button">
             Contact us
           </button>
       </li>
