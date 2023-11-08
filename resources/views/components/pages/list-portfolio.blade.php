@@ -1,14 +1,13 @@
 <x-app-layout gap="45px" title="ListPortfolio">
-    <div class="w-full h-full px-7 py-[18px] px-[20px] bg-white rounded-lg shadow flex-col justify-start items-start gap-6 inline-flex">
-        <div class="h-8 justify-start items-start gap-3.5 inline-flex">
-           
-                <select id="categoriesYear">
+    <div class="w-full h-full px-7 py-[18px] px-[20px] bg-white rounded-lg shadow flex-col justify-start items-start gap-6 flex flex-wrap">
+        <div class="h-max flex flex-col md:flex-row justify-start items-start gap-3.5 ">
+                <select id="categoriesYear" class="text-normal-sm md:text-normal-lg">
                     <option  disabled selected>tahun </option>
                     @foreach ($years as $year)
                     <option  value={{$year}}>{{$year}}</option>
                     @endforeach
                 </select>
-                <select id="categoriesSelect">
+                <select id="categoriesSelect" class="w-full text-normal-sm md:text-normal-lg ">
                     <option  disabled selected>kategori </option>
                     @foreach ($categories as $category)
                     <option id={{$category->id}} value={{$category->id}}>{{$category->name}}</option>
@@ -19,7 +18,7 @@
         <div  id="list-category" class="w-full min-h-max p-2.5 rounded-md justify-start items-start gap-2.5 flex flex-row flex-wrap">
             @forelse ($categoriesFilterNameList as $filterCagetory)
             <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex">
-                <div class="text-black text-base font-normal font-sans">{{$filterCagetory}}</div>
+                <div class="text-black text-base text-input-sm md:text-input-lg  lg:text-medium-lg font-normal font-sans">{{$filterCagetory}}</div>
             </div>
             @empty
                 {{-- Do noting --}}
@@ -28,7 +27,7 @@
             @if ($yearFilterList != '')
             @forelse (explode(',',$yearFilterList) as $yearList)
             <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex">
-                <div class="text-black text-base font-normal font-sans">{{$yearList}}</div>
+                <div class="text-black text-base text-input-sm md:text-input-lg lg:text-medium-lg font-normal font-sans">{{$yearList}}</div>
             </div>
             @empty
                 
@@ -54,7 +53,7 @@
     <div class="w-full flex justify-around flex-row flex-wrap gap-6">
         @if (count($portfolios) > 0)
         @foreach ($portfolios as $portfolio)
-        <div class="flex flex-wrap flex-col w-[40%] gap-y-3 justify-between">
+        <div class="flex flex-wrap flex-col w-full md:w-[40%] lg:w-[30%] gap-y-3 justify-between">
 
            <div class="flex flex-col gap-1">
             <div class="w-full h-fit">
@@ -63,21 +62,21 @@
             </div>
 
             <div>
-                <div class="w-full h-auto flex flex-row flex-wrap gap-x-1 gap-y-2 " >
+                <div class="w-full h-max flex flex-row flex-wrap gap-x-1 gap-y-2 " >
                     @foreach ($portfolio->categories as $category)
                         <x-category name='{{ $category->name }}' />
                     @endforeach
                 </div>
-                <p class="font-sans text-normal-lg w-full">
+                <p class="font-sans text-medium-lg w-full">
                     {{ $portfolio->year() }}, {{ $portfolio->promoter }}
                 </p>
             </div>
            </div>
 
-            <button type="button" style="padding: 2px 6px"
-                class="border-2 w-fit  px-8 border-blue-500 font-medium rounded-lg text-center ">
-                See Detail
-            </button>
+           <a href="/portfolio/{{$portfolio->id}}" style="padding: 2px 6px"
+            class="border-2 w-fit  px-8 border-blue-500 font-medium rounded-lg text-center ">
+            See Detail
+        </a>
 
         </div>
         @endforeach                    
@@ -112,7 +111,7 @@
                 var categoryId = $('#categoriesSelect').find(":selected").val();
                 if (!categories.includes(categoryId)) {
                     categories[categories.length] = categoryId 
-                    $('#list-category').append(' <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex"><div class="text-black text-base font-normal font-sans">'+ categoryName +'</div></div>');
+                    $('#list-category').append(' <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex"><div class="text-black text-base text-input-sm md:text-input-lg  lg:text-medium-lg font-normal font-sans">'+ categoryName +'</div></div>');
                     $("#categoriesFilter").val(categories.toString());
                 }
             });    
@@ -124,7 +123,7 @@
                 var yearValue = $('#categoriesYear').find(":selected").val();
                 if (!years.includes(yearValue)) {
                     years[years.length] = yearValue 
-                    $('#list-category').append(' <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex"><div class="text-black text-base font-normal font-sans">'+ yearValue +'</div></div>');
+                    $('#list-category').append(' <div class="px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex"><div class="text-black text-base text-input-sm md:text-input-lg  lg:text-medium-lg font-normal font-sans">'+ yearValue +'</div></div>');
                     $("#yearsFilter").val(years.toString());
                 }
             });
