@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row items-center gap-[23px]">
+<div class="flex flex-col md:flex-row items-center gap-[23px] mt-28">
     <div class=" md:flex-1 w-full h-[256px] md:h-[356px] bg-contain lg:h-[456px]" style="background-image: url(https://random.imagecdn.app/300/300)"></div>
     <div class=" md:flex-1 flex flex-col gap-6">
         <h1 class="text-h1-lg font-serif">Let's make something great together.</h1>
