@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center items-center gap-12">
+<div class="flex flex-col justify-center items-center gap-12 mt-10 md:mt-16">
     <div style="padding-left:inherit; padding-right:inherit" class="flex justify-center">
         <p class="text-h3-sm md:text-h3-lg font-sans max-w-[80%]">
             2the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

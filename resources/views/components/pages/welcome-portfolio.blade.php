@@ -1,4 +1,4 @@
-<div class="w-full flex flex-col justify-center items-center gap-16 ">
+<div class="w-full flex flex-col justify-center items-center gap-16 mt-28">
     <div class="w-full ">
         <h1 class="font-serif text-h1-lg  font-bold">Our works</h1>
         <a href="/list-portfolio" class="font-sans text-h3-lg border-b-2 border-accent text-accent">see all alredy event finished</a>

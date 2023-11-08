@@ -1,4 +1,4 @@
-<div>
+<div class="mt-28">
     <h1 class="w-full  text-h1-lg font-serif font-bold text-center">Activity Gallery</h1>
     <div class="py-[31px] w-full flex flex-center justify-center">
         <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-2 md:gap-x-4 lg:gap-x-8 gap-y-3 md:gap-y-3 lg:gap-y-3 ">
