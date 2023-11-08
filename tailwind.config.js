@@ -27,7 +27,7 @@ export default {
       'normal-lg': ['16px'],
       'input-lg': ['15px'],
 
-      'headline-sm': ['30px'],
+      'headline-sm': ['30px','30px'],
       'h1-sm': ['21px'],
       'h2-sm': ['18.5px'],
       'h3-sm': ['17.5px'],
