@@ -31,8 +31,8 @@
 </button>
 
 <!-- Dropdown menu -->
-<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ">
-    <ul class="p-[8px] text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+<div id="dropdown" class="z-10 hidden drop-shadow-md bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ">
+    <ul class="p-[8px] text-sm text-gray-700  dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
       <li>
         <a href="/list-portfolio" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Portfolio</a>
       </li>
@@ -41,6 +41,11 @@
       </li>
       <li>
         <a href="/partner" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Partner</a>
+      </li>
+      <li>
+        <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="   w-max  bg-white    " type="button">
+            Contact us
+          </button>
       </li>
     </ul>
 </div>
