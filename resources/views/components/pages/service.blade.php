@@ -1,4 +1,4 @@
-<div class="w-full h-fit flex flex-wrap justify-center">
+<div class="w-full h-fit flex flex-wrap  gap-6 justify-center">
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our Service</h1>
     <div class=" w-full flex flex-row flex-wrap justify-center gap-4 lg:gap-7">
         {{-- style="background: linear-gradient(148deg, #0081AF 41.98%, rgba(221, 28, 26, 0.00) 120.72%, rgba(221, 28, 26, 0.00) 120.72%); " --}}

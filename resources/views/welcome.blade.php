@@ -1,5 +1,5 @@
 <x-app-layout
-  gap="100px" title="Navigation bar">
+  gap="120px" title="Navigation bar">
   <x-welcome />
 
   <x-pages.about-us/>
