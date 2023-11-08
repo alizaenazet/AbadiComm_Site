@@ -3,12 +3,12 @@
 
     <h1 class="text-h1-lg font-serif">Be Our Partner</h1>
 
-    <div class="flex flex-row gap-[23px]">
-        <div class="flex-1 ">
+    <div class="flex flex-col lg:flex-row gap-[23px]">
+        <div class="flex-1 flex justify-start lg:justify-end">
             <img class="object-cover h-full" src="https://via.placeholder.com/553x371" alt="">
         </div>
-        <div class="flex-1 flex flex-col gap-6">
-            <p>In quaerat maxime sapiente ex repellat sit ipsam. Rem quos repudiandae id repellat rerum 
+        <div class="flex-1 flex flex-col gap-6 ">
+            <p class=" text-medium-sm md:text-medium-lg lg:w-[80%]">In quaerat maxime sapiente ex repellat sit ipsam. Rem quos repudiandae id repellat rerum 
                 voluptatibus et. Similique quidem nobis et id. Numquam deleniti est ipsam quisquam accusamus 
                 et omnis. Quo adipisci id aliquam autem quas illum dolores. Officiis eaque itaque et 
                 possimus ut ut. Sit suscipit nobis eaque facilis aliquid velit vero. Velit omnis libero 
@@ -19,7 +19,7 @@
                 occaecati quia qui. Neque cum eum earum incidunt a provident rerum. Assumenda nobis beatae 
             </p>
 
-            <button data-modal-target="partner-modal" data-modal-toggle="partner-modal" class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button">
+            <button data-modal-target="partner-modal" data-modal-toggle="partner-modal" class=" order-first md:order-last px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button">
                 Take a step
               </button>
             
