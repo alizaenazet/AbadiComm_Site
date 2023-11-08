@@ -3,25 +3,25 @@
     flex flex-row justify-between items-center
 ">
 <a href="/">
-    <img src="/images/logo_small.svg" alt="">
+    <img class="lg:w-24" src="/images/logo_small.svg" alt="">
 </a>
 
 <div class="md:flex flex-row gap-9 hidden ">
     <a class="hover:border-b-2 hover:border-accent"
      href="/list-portfolio">
-        <p>Portfolio</p>
+        <p class="lg:text-[22px]">Portfolio</p>
     </a>
     <a class="hover:border-b-2 hover:border-accent"
      href="/gallery">
-        <p>Gallery</p>
+        <p class="lg:text-[22px]" >Gallery</p>
     </a>
-    <a class="hover:border-b-2 hover:border-accent"
+    {{-- <a class="hover:border-b-2 hover:border-accent"
      href="/articles">
-        <p>Articles</p>
-    </a>
+        <p class="lg:text-[22px]" >Articles</p>
+    </a> --}}
     <a class="hover:border-b-2 hover:border-accent"
      href="/partner">
-        <p>Partner</p>
+        <p class="lg:text-[22px]" >Partner</p>
     </a>
 </div>
 
@@ -52,7 +52,7 @@
 
 
 <!-- Modal toggle -->
-<button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class=" px-[10px] py-[8px] text-gray-900 w-max  bg-white border-2 border-primary focus:outline-none hover:bg-gray-100 focus:ring-4 hover:border-accent focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 hidden md:flex" type="button">
+<button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class=" px-[10px] py-[8px] text-gray-900 w-max lg:text-medium-lg bg-white border-2 border-primary focus:outline-none hover:bg-gray-100 focus:ring-4 hover:border-accent focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 hidden md:flex" type="button">
     Contact us
   </button>
 
