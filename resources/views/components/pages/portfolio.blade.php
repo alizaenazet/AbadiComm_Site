@@ -1,15 +1,10 @@
 <x-app-layout gap="20px" title="ListPortfolio">
     <div class="mt-6 w-full h-fit flex flex-col justify-center items-center gap-3">
-        <div class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div>
+        <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url(https://random.imagecdn.app/300/300#ef7449/cf4040?text=Elsa+Kohler)"></div>
+        {{-- <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div> --}}
         <div class="flex flex-row overflow-x-auto gap-2">
             @foreach ($portfolio->portfolioImage as $image)
-                <img class="w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
-                <img class="w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
-                <img class="w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
-                <img class="w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
-                <img class="w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
-                <img class="w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
-                <img class="w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
+                <img id={{$image->id}} class="imagesItem w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
             @endforeach
         </div>
     </div>
@@ -43,4 +38,23 @@
         <h2 class="font-serif text-h2-lg">Deskripsi</h3>
         <p class="text-medium-sm md:text-h3-lg">{{$portfolio->content}}</p>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('img.imagesItem').click(function (e) { 
+                e.preventDefault();
+                var id = $(this).attr('id');
+                var imageUrl = $(this).attr('src');
+                var imageClass = $(this).attr('class')
+                $('#imageDisplay').attr('style', `background-image: url(${imageUrl})`);
+                imageClass = imageClass + " border-4 border-primary";
+                id = "#"+id
+                // TODO: HOW TO SOLVE TO SET THE BORDER
+                // $(id).attr('class', class);
+                console.log(id);
+                console.log("image changed");
+                console.log(imageUrl);
+            });
+        });
+    </script>
 </x-app-layout>
