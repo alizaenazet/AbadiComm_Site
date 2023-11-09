@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
 
         Article::factory()->count(2)->create();
 
-        GalleryActivity::factory()->count(3)->create();
+        GalleryActivity::factory()->count(23)->create();
 
         ContactMenu::factory()->count(3)->create();
 
