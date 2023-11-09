@@ -25,7 +25,7 @@
             
               <!-- Main modal -->
               <div id="partner-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <x-contact-modal >
+            <x-partner-modal >
                 <form class="w-full h-max flex flex-col gap-4 px-[20px] py-[35px]" action="/whatsapp-redirect/partner" method="POST">
                     @csrf
                     <div>
@@ -59,7 +59,7 @@
                 </svg>Lets talk</button>
 
                 </form>
-            </x-contact-modal >
+            </x-partner-modal >
         </div>
     </div>
 
