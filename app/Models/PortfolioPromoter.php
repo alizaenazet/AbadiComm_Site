@@ -15,7 +15,4 @@ class PortfolioPromoter extends Model
         'portfolio_id'
     ];
 
-    public function portfolio(){
-        return $this->belongsTo(Portfolio::class);
-    }
 }
