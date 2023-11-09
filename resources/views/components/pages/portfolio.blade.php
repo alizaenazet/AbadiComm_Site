@@ -2,9 +2,13 @@
     <div class="mt-6 w-full h-fit flex flex-col justify-center items-center gap-3">
         <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url(https://random.imagecdn.app/300/300#ef7449/cf4040?text=Elsa+Kohler)"></div>
         {{-- <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div> --}}
-        <div class="flex flex-row overflow-x-auto gap-2">
+        <div class="flex flex-row h-max  overflow-x-auto gap-2">
             @foreach ($portfolio->portfolioImage as $image)
-                <img id={{$image->id}} class="imagesItem w-[62px] h-[62px] md:w-[72px] md:h-[72px]" src={{$image->image_url}}  alt="">
+                <img id={{$image->id . "1"}} class="imagesItem w-[62px] h-[62px] md:w-[72px] md:h-[72px] hover:border-4 hover:border-accent hover:rounded-md cursor-pointer " src={{$image->image_url}}  alt="">
+                <img id={{$image->id . "2"}} class="imagesItem w-[62px] h-[62px] md:w-[72px] md:h-[72px] hover:border-4 hover:border-accent hover:rounded-md cursor-pointer " src={{$image->image_url}}  alt="">
+                <img id={{$image->id . "3"}} class="imagesItem w-[62px] h-[62px] md:w-[72px] md:h-[72px] hover:border-4 hover:border-accent hover:rounded-md cursor-pointer " src={{$image->image_url}}  alt="">
+                <img id={{$image->id . "4"}} class="imagesItem w-[62px] h-[62px] md:w-[72px] md:h-[72px] hover:border-4 hover:border-accent hover:rounded-md cursor-pointer " src={{$image->image_url}}  alt="">
+                <img id={{$image->id . "5"}} class="imagesItem w-[62px] h-[62px] md:w-[72px] md:h-[72px] hover:border-4 hover:border-accent hover:rounded-md cursor-pointer " src={{$image->image_url}}  alt="">
             @endforeach
         </div>
     </div>
@@ -41,19 +45,18 @@
 
     <script>
         $(document).ready(function () {
+            var onDisplayId = ""
             $('img.imagesItem').click(function (e) { 
                 e.preventDefault();
                 var id = $(this).attr('id');
+                if (onDisplayId) {
+                    $('#'+onDisplayId).removeClass('border-4 border-primary rounded-md drop-shadow-xl');
+                }
                 var imageUrl = $(this).attr('src');
                 var imageClass = $(this).attr('class')
                 $('#imageDisplay').attr('style', `background-image: url(${imageUrl})`);
-                imageClass = imageClass + " border-4 border-primary";
-                id = "#"+id
-                // TODO: HOW TO SOLVE TO SET THE BORDER
-                // $(id).attr('class', class);
-                console.log(id);
-                console.log("image changed");
-                console.log(imageUrl);
+                $(this).addClass(`border-4 border-primary rounded-md drop-shadow-xl`);
+                onDisplayId = id
             });
         });
     </script>
