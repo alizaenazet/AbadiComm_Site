@@ -43,6 +43,7 @@ Route::get('/team-member', function () {
                     ->with('members', $members);
 });
 
+
 Route::get('/list-portfolio',function(){
     $portfolios = Portfolio::all();
     $categories = Category::all();
