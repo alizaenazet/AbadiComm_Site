@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Portfolio>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PortfolioPromoter>
  */
-class PortfolioFactory extends Factory
+class PortfolioPromoterFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class PortfolioFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->name(),
-            'content' => fake()->text(3000),
-            'date' => fake()->date()
+            'name' => fake()->name()
         ];
     }
 }

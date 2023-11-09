@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\PortfolioImage;
+use App\Models\PortfolioPromoter;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Portfolio extends Model
@@ -16,12 +17,15 @@ class Portfolio extends Model
     protected $fillable = [
         'title',
         'content',
-        'promoter',
         'date'
     ];
 
     public function portfolioImage(){
         return $this->hasMany(PortfolioImage::class);
+    }
+
+    public function portfolioPromoter(){
+        return $this->hasMany(PortfolioPromoter::class);
     }
 
     public function categories():BelongsToMany{

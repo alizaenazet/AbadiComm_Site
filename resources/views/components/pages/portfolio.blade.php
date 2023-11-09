@@ -27,13 +27,13 @@
                 <x-category name='{{ $category->name }}' />    
                 <x-category name='{{ $category->name }}' />    
                 <x-category name='{{ $category->name }}' />    
-                   
                 @endforeach
             </div>
         </div>
         <div class="flex flex-col gap-3 ">
             <h3 class="text-h3-sm md:text-h3-lg">Penyelenggara</h3>
             <ul class="pl-[15px] list-disc list-outside">
+                {{-- for each --}}
                 <li class="text-medium-sm md:text-medium-lg">Penyelenggara</li>
             </ul>
         </div>

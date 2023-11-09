@@ -10,6 +10,7 @@ use App\Models\Division;
 use App\Models\GalleryActivity;
 use App\Models\Portfolio;
 use App\Models\PortfolioImage;
+use App\Models\PortfolioPromoter;
 use App\Models\TeamMember;
 use Illuminate\Database\Seeder;
 
@@ -32,22 +33,24 @@ class DatabaseSeeder extends Seeder
             'teamMembers'
             )->count(3)->create();
 
-        Portfolio::factory()->has(
-            PortfolioImage::factory()->count(1),
-            'portfolioImage'
+        for ($i=0; $i < 13; $i++) { 
+        Portfolio::factory()
+            ->has(
+                PortfolioImage::factory()->count(rand(3,8)),
+                'portfolioImage'
             )->has(
-                Category::factory()->count(1),
-            )->count(8)->create();
-
-
-
+                PortfolioPromoter::factory()->count(rand(1,5)),
+                'portfolioPromoter'
+            )->has(
+                Category::factory()->count(rand(1,3)),
+            )->count(1)->create();
+        }
 
         Article::factory()->count(2)->create();
 
         GalleryActivity::factory()->count(3)->create();
 
         ContactMenu::factory()->count(3)->create();
-
 
     }   
 }

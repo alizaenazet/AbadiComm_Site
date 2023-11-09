@@ -20,8 +20,13 @@
                      @endforeach
                  </div>
                  <p class="font-sans text-normal-lg w-full">
-                     {{ $globalPortfolio->year() }}, {{ $globalPortfolio->promoter }}
+                    <b>{{ $globalPortfolio->year() }}</b>
+                     @foreach ($globalPortfolio->portfolioPromoter as $promoter)
+                    , {{ $promoter->name }}
+                    @endforeach
                  </p>
+
+                 
              </div>
             </div>
     

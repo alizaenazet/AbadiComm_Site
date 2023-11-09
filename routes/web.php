@@ -4,8 +4,10 @@ use App\Http\Controllers\PortfolioController;
 use App\Models\Category;
 use App\Models\GalleryActivity;
 use App\Models\Portfolio;
+use App\Models\PortfolioPromoter;
 use App\Models\PortfolioImage;
 use App\Models\TeamMember;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -27,7 +29,6 @@ Route::get('/', function (){
 
 Route::get('/gallery',function () {
     $galleries = GalleryActivity::all();
-
    return view('components.pages.gallery')
                 ->with('galleries', $galleries);
 });
@@ -38,10 +39,10 @@ Route::get('/partner', function () {
 
 Route::get('/team-member', function () {
     $members = TeamMember::all();
-
     return view('components.pages.team-member')
                     ->with('members', $members);
 });
+
 
 Route::get('/list-portfolio',function(){
     $portfolios = Portfolio::all();
@@ -60,6 +61,7 @@ Route::get('/portfolio/{portfolioId}', function (string $portfolioId){
     $portfolio = Portfolio::findOrFail($portfolioId);
     return view('components.pages.portfolio')->with('portfolio', $portfolio);
 });
+
 Route::post('/whatsapp-redirect/contact', function (Request $req) {
     $req->validate([
         'nama'=> 'required',
@@ -136,7 +138,6 @@ Route::post('whatsapp-redirect/partner', function (Request $req) {
             'penawaran' => 'required'
         ]);
     }
-
     return $req;
 });
 

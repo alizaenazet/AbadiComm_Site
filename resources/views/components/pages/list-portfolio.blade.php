@@ -71,7 +71,10 @@
                     @endforeach
                 </div>
                 <p class="font-sans text-medium-lg w-full">
-                    {{ $portfolio->year() }}, {{ $portfolio->promoter }}
+                    <b>{{ $portfolio->year() }}</b>
+                    @foreach ($portfolio->portfolioPromoter as $promoter)
+                    , {{ $promoter->name }}
+                    @endforeach
                 </p>
             </div>
            </div>

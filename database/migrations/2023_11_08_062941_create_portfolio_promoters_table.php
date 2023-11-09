@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portfolios', function (Blueprint $table) {
+        Schema::create('portfolio_promoters', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title',250);
-            $table->string('content',5000);
-            $table->date('date');
+            $table->string('name',150);
+            $table->foreignUuid('portfolio_id')
+                ->constrained('portfolios')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portfolios');
+        Schema::dropIfExists('portfolio_promoters');
     }
 };
