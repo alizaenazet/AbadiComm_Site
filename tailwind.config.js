@@ -8,7 +8,7 @@ export default {
   ],
   theme: {
     colors:{
-      'primary': '#001C55',
+      'primary': '#0081AF',
       'secondary': '#DD1C1A',
       'accent': '#FFCF56',
       'error': '#F9B3D1',
@@ -19,15 +19,15 @@ export default {
       'serif': ['Gabarito','serif']
     },
     fontSize: {
-      'headline-lg': ['72px'],
-      'h1-lg': ['48px'],
+      'headline-lg': ['72px','80px'],
+      'h1-lg': ['48px','43px'],
       'h2-lg': ['32px'],
       'h3-lg': ['24px'],
       'medium-lg': ['18px'],
       'normal-lg': ['16px'],
       'input-lg': ['15px'],
 
-      'headline-sm': ['30px'],
+      'headline-sm': ['30px','30px'],
       'h1-sm': ['21px'],
       'h2-sm': ['18.5px'],
       'h3-sm': ['17.5px'],

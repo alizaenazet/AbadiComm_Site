@@ -17,7 +17,7 @@ class GalleryActivityFactory extends Factory
     public function definition(): array
     {
         return [
-            'image_url'=> 'https://image.dummyjson.com/400x200/'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
+            'image_url'=> 'https://random.imagecdn.app/300/300'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
             'content' => fake()->text(3000)
 
         ];

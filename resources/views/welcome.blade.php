@@ -1,7 +1,9 @@
-<x-app-layout>
-  <x-slot:title>
-      Navigation bar
-  </x-slot>
-
-  <h1>inside body</h1>
+<x-app-layout
+  gap="0px" title="Navigation bar">
+  <x-welcome />
+    <x-pages.about-us/>
+    <x-pages.service/>
+    <x-pages.welcome-gallery/>
+    <x-pages.welcome-portfolio/>
+    <x-pages.welcome-contact/>
 </x-app-layout>

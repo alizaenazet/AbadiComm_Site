@@ -6,20 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PortfolioCard extends Component
+class Category extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $image,
-        public string $title,
-        public string $date,
-        public string $promoter,
-        
-        )
+        public string $name 
+    )
     {
-        
     }
 
     /**
@@ -27,6 +22,6 @@ class PortfolioCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.portfolio-card');
+        return view('components.category');
     }
 }

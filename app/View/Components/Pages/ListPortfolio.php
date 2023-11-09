@@ -1,25 +1,25 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\pages;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PortfolioCard extends Component
+class ListPortfolio extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
         public string $image,
+        public string $name, 
         public string $title,
-        public string $date,
-        public string $promoter,
-        
-        )
+        public string $date, 
+        public string $promoter
+    )
     {
-        
+        //
     }
 
     /**
@@ -27,6 +27,6 @@ class PortfolioCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.portfolio-card');
+        return view('components.pages.list-portfolio');
     }
 }
