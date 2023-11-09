@@ -142,3 +142,7 @@ Route::post('whatsapp-redirect/partner', function (Request $req) {
 
 
 Route::put('/list-portfolio/filter',[PortfolioController::class,'filter']);
+
+Route::get('/list-portfolio/filter',function ()  {
+    return redirect('/list-portfolio');
+});
