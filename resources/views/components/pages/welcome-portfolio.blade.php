@@ -1,7 +1,7 @@
 <div class="w-full flex flex-col justify-center items-center gap-16 mt-28">
     <div class="w-full ">
         <h1 class="font-serif text-h1-lg  font-bold">Our works</h1>
-        <a href="/list-portfolio" class="font-sans text-h3-lg border-b-2 border-accent text-accent">see all alredy event finished</a>
+        <a href="/list-portfolio" class="font-sans text-h3-lg border-b-2 border-accent text-accent">Semua event kami</a>
     </div>
     <div class="h-max w-full flex flex-row flex-wrap justify-center items-start gap-x-4 gap-y-10 lg:gap-10">
         @foreach ($globalPortfolios as $globalPortfolio)

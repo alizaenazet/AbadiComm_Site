@@ -19,7 +19,7 @@ class PortfolioFactory extends Factory
         return [
             'title' => fake()->name(),
             'content' => fake()->text(3000),
-            'date' => fake()->date()
+            'date' => fake()->dateTimeBetween('-5 years'),
         ];
     }
 }
