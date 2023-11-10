@@ -1,54 +1,45 @@
 <div class="w-full h-fit flex flex-wrap  gap-6 justify-center mt-28">
-    <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our Service</h1>
+    <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our Services</h1>
     <div class=" w-full flex flex-row flex-wrap justify-center gap-4 lg:gap-7">
         {{-- style="background: linear-gradient(148deg, #0081AF 41.98%, rgba(221, 28, 26, 0.00) 120.72%, rgba(221, 28, 26, 0.00) 120.72%); " --}}
         <div
-            class=" flex-col max-w-[330px]  md:w-[22rem] flex justify-center items-center px-[13px] pt-[20px] pb-[58px]   p-6 bg-white  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary ">
+            class=" flex-col max-w-[330px]  md:w-[22rem] flex justify-start items-center px-[13px] pt-[20px] pb-[58px]   p-6 bg-white  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary ">
                 <svg class="justify-center items-center fill-secondary w-14 md:w-20 lg:w-24 h-fit" xmlns="http://www.w3.org/2000/svg"
                     height="24" viewBox="0 -960 960 960" width="24">
                     <path
                         d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" />
                 </svg>
             <h3 class="w-full text-h3-sm md:text-h3-lg mb-2 text-2xl font-bold font-serif tracking-tight dark:text-white text-white">
-                Weding</h3>
+                Konsep & perencanaan</h3>
             <p class="font-sans text-normal-sm md:text-normal-lg text-white dark:text-gray-400">
-                the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the
-                short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the short
-                description about the company Lorem ipsum dolor sit Here are the biggest enterprise technology
-                acquisitions of 2021 so far, in reverse chronological order.
+                Layanan ini meliputi penyusunan konsep event, mulai dari tema, tujuan, target audience, hingga timeline pelaksanaan. Event organizer akan bekerja sama dengan klien untuk memahami kebutuhan dan keinginan klien, kemudian mengembangkan konsep event yang sesuai.
             </p>
         </div>
        
         <div
-            class=" flex-col max-w-[330px]  md:w-[22rem] flex justify-center items-center px-[13px] pt-[20px] pb-[58px]   p-6 bg-white  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary ">
+            class=" flex-col max-w-[330px]  md:w-[22rem] flex justify-start items-center px-[13px] pt-[20px] pb-[58px]   p-6 bg-white  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary ">
                 <svg class="justify-center items-center fill-secondary w-14 md:w-20 lg:w-24 h-fit" xmlns="http://www.w3.org/2000/svg"
                     height="24" viewBox="0 -960 960 960" width="24">
                     <path
                         d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" />
                 </svg>
             <h3 class="w-full text-h3-sm md:text-h3-lg mb-2 text-2xl font-bold font-serif tracking-tight dark:text-white text-white">
-                Weding</h3>
+                Penyewaan & pengadaan</h3>
             <p class="font-sans text-normal-sm md:text-normal-lg text-white dark:text-gray-400">
-                the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the
-                short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the short
-                description about the company Lorem ipsum dolor sit Here are the biggest enterprise technology
-                acquisitions of 2021 so far, in reverse chronological order.
+                penyewaan dan pengadaan berbagai kebutuhan event, seperti venue, peralatan, dekorasi, dan lain-lain. Event organizer akan membantu klien untuk memilih vendor yang tepat dan mendapatkan harga yang terbaik
             </p>
         </div>
         <div
-            class=" flex-col max-w-[330px]  md:w-[22rem] flex justify-center items-center px-[13px] pt-[20px] pb-[58px]   p-6 bg-white  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary ">
+            class=" flex-col max-w-[330px]  md:w-[22rem] flex justify-start items-center px-[13px] pt-[20px] pb-[58px]   p-6 bg-white  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary ">
                 <svg class="justify-center items-center fill-secondary w-14 md:w-20 lg:w-24 h-fit" xmlns="http://www.w3.org/2000/svg"
                     height="24" viewBox="0 -960 960 960" width="24">
                     <path
                         d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" />
                 </svg>
             <h3 class="w-full text-h3-sm md:text-h3-lg mb-2 text-2xl font-bold font-serif tracking-tight dark:text-white text-white">
-                Weding</h3>
+                Operasional & pelaksanaan</h3>
             <p class="font-sans text-normal-sm md:text-normal-lg text-white dark:text-gray-400">
-                the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the
-                short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit,the short
-                description about the company Lorem ipsum dolor sit Here are the biggest enterprise technology
-                acquisitions of 2021 so far, in reverse chronological order.
+                pelaksanaan event secara menyeluruh, mulai dari persiapan, pelaksanaan, hingga pasca-pelaksanaan. Event organizer akan bertanggung jawab untuk memastikan bahwa event berjalan sesuai dengan rencana dan berjalan dengan lancar.
             </p>
         </div>
 

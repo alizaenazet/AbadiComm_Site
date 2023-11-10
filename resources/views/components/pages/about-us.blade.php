@@ -1,10 +1,9 @@
 <div class="flex flex-col justify-center items-center gap-12 mt-10 md:mt-16">
     <div style="padding-left:inherit; padding-right:inherit" class="flex justify-center">
         <p class="text-h3-sm md:text-h3-lg font-sans max-w-[80%]">
-            2the short description about the company Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Suksesnya suatu event berdampak banyak hal terhadap kemajuan  perusahaan seperti mendapat prospek, meningkatkan penjualan dan  sebagainya. 
+            Untuk itu ABADI COMMUNICATIONS, hadir menawarkan jasa penanganan event perusahaan sampai kepada hal detailnya. Tim kami akan merinci setiap kebutuhan event perusahaan Anda agar sesuai dengan karakter yang perusahaan Anda miliki.
+            Saat Anda mempercayakan event tersebut kepada kami, Anda bisa fokus pada bisnis perusahaan harian. Kami akan membantu Anda menyusun, merancang, mempersiapkan serta melaksanakan event  perusahaan Anda. 
         </p>
     </div>
     
@@ -44,9 +43,11 @@
         <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 ">
             <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_surabaya.svg)"></div>
             <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_bali_logo.svg)"></div> 
-            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_pasuruan.svg)"></div> 
-            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_jateng_logo.svg)"></div> 
-            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/pemkab_pamekasan.svg)"></div> 
+            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/ace_logo.svg)"></div> 
+            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/ancol_logo.svg)"></div> 
+            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/ibid_logo.svg)"></div> 
+            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/kemendag_logo.svg)"></div> 
+            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/phillips_logo.svg)"></div> 
         </div>
     </div>
 </div>
