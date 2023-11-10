@@ -56,7 +56,7 @@
     <div class="w-full flex justify-around flex-row flex-wrap gap-6">
         @if (count($portfolios) > 0)
         @foreach ($portfolios as $portfolio)
-        <div class="flex flex-wrap flex-col w-full md:w-[40%] lg:w-[30%] gap-y-3 justify-between">
+        <div class="flex flex-wrap flex-col w-full md:w-[40%] lg:w-[30%] gap-y-3 justify-start items-start">
 
            <div class="flex flex-col gap-1">
             <div class="w-full h-fit">
