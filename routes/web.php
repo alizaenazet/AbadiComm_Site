@@ -134,12 +134,35 @@ Route::post('whatsapp-redirect/partner', function (Request $req) {
         'opsiPenawaran' => 'required',
     ]);
 
+    $penawaran = "";
     if ($req['opsiPenawaran'] == '0') {
         $req->validate([
             'penawaran' => 'required'
         ]);
+        $penawaran = $req['penawaran'];
+    }else {
+        switch ($req['opsiPenawaran']) {
+            case '1':
+                $penawaran = "Barang";
+                break;
+            
+            default:
+                $penawaran = "Jasa";
+                break;
+        }
     }
-    return $req;
+
+    $pesanNamaDanInstansi = "salam saya " . $req['nama'] . " dari " .$req['namaPerusahaanInstitusi'];
+    $pesanPenawaran = "Saya memiliki penawaran " . $penawaran . ".%0A";
+    $pesanInformasiPenawaran = "berikut informasi terkait penawaran saya: %0A " . $req['informasiPenawaran'] ."%0A";
+
+    $message = $pesanNamaDanInstansi . "%0A" . $pesanPenawaran;
+    if (!empty($req['informasiPenawaran'])) {
+        $message = $message . $pesanInformasiPenawaran;
+    }
+    $message = $message . "Senang dapat menghubungi anda.%0A Terimakasih";
+    $directWhatsappUrl = 'https://api.whatsapp.com/send/?phone=6281331720920&text='.$message.'&type=phone_number&app_absent=0';
+    return redirect()->away($directWhatsappUrl);
 });
 
 
