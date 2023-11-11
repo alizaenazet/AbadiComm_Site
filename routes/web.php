@@ -85,7 +85,7 @@ Route::post('/whatsapp-redirect/contact', function (Request $req) {
     $keperluan = "";
 
     if ($data['opsiInstansi'] != "0") {
-        $namaInstansi = $data['nama_instansi'];
+        $namaInstansi = $data['namaInstansi'];
     }
 
     switch ($data['opsiKeperluan']) {
@@ -119,11 +119,12 @@ Route::post('/whatsapp-redirect/contact', function (Request $req) {
     }
 
 
-    $message = "Selamat pagi, siang, atau malam. Semoga Anda sehat dan bahagia.%0A%0A".
-        $pesanInstansi." ".$pesanKeperluan."%0A%0A".$pesanInformasiTambahan."%0A Senang dapat menghubungi anda.%0ATer Terimakasih"
+    $message = "Selamat pagi, siang, atau malam. Semoga Anda sehat dan bahagia.%0A".
+        $pesanInstansi." ".$pesanKeperluan."%0A%0A".$pesanInformasiTambahan."%0A Senang dapat menghubungi anda.%0Terimakasih"
     ;
-    $message = str_replace(" ","%20",$message);
-    return redirect()->away('https://wa.me/081331720920?text='.$message);
+    // $message = str_replace(" ","%20",$message);
+    $directWhatsappUrl = 'https://api.whatsapp.com/send/?phone=6281331720920&text='.$message.'&type=phone_number&app_absent=0';
+    return redirect()->away($directWhatsappUrl);
 });
 
 Route::post('whatsapp-redirect/partner', function (Request $req) {

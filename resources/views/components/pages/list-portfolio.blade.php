@@ -53,12 +53,12 @@
         </div>
     </form>
 
-    <div class="w-full flex justify-around flex-row flex-wrap gap-6">
+    <div class="w-full flex justify-center flex-row flex-wrap gap-6">
         @if (count($portfolios) > 0)
         @foreach ($portfolios as $portfolio)
         <div class="flex flex-wrap flex-col w-full md:w-[40%] lg:w-[30%] gap-y-3 justify-start items-start">
 
-           <div class="flex flex-col gap-1">
+           <div class="flex w-full flex-col gap-1">
             <div class="w-full h-fit">
                 <div class="w-full h-[273px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div>
                 <p class="text-black text-h3-lg font-bold font-serif">{{ $portfolio->title }}</p>
