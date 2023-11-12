@@ -1,6 +1,6 @@
 <x-app-layout gap="20px" title='{{$portfolio->title}}'>
     <div class="mt-6 w-full h-fit flex flex-col justify-center items-center gap-3">
-        <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url(https://random.imagecdn.app/300/300#ef7449/cf4040?text=Elsa+Kohler)"></div>
+        <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div>
         {{-- <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div> --}}
         <div class="flex flex-row h-max  overflow-x-auto gap-2">
             @foreach ($portfolio->portfolioImage as $image)
