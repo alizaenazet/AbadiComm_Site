@@ -1,13 +1,9 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite(['resources/css/app.css','resources/js/app.js'])
-</head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello Laravel with Vite!
-  </h1>
-</body>
-</html>
+<x-app-layout
+  gap="0px" title="Navigation bar">
+  <x-welcome />
+    <x-pages.about-us/>
+    <x-pages.service/>
+    <x-pages.welcome-gallery/>
+    <x-pages.welcome-portfolio/>
+    <x-pages.welcome-contact/>
+</x-app-layout>
