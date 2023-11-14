@@ -120,7 +120,7 @@ Route::post('/whatsapp-redirect/contact', function (Request $req) {
 
 
     $message = "Selamat pagi, siang, atau malam. Semoga Anda sehat dan bahagia.%0A".
-        $pesanInstansi." ".$pesanKeperluan."%0A%0A".$pesanInformasiTambahan."%0A Senang dapat menghubungi anda.%0Terimakasih"
+        $pesanInstansi." ".$pesanKeperluan."%0A%0A".$pesanInformasiTambahan."%0A Senang dapat menghubungi anda.%0ATerimakasih"
     ;
     // $message = str_replace(" ","%20",$message);
     $directWhatsappUrl = 'https://api.whatsapp.com/send/?phone=6281331720920&text='.$message.'&type=phone_number&app_absent=0';
