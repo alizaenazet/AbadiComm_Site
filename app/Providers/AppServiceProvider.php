@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::share('globalPortfolios',Portfolio::take(4)->get());
-        View::share('globalTeamMembers',TeamMember::select('image_url')->get());
+        View::share('globalTeamMembers',TeamMember::take(6)->select('image_url')->get());
         View::share('globalActivityGallery',GalleryActivity::select('image_url')->limit(31)->get());
     }
 }
