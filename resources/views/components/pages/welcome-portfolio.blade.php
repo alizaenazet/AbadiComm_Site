@@ -9,7 +9,7 @@
     
             <div class="flex flex-col gap-1">
              <div class="w-full h-fit">
-                <div class="w-full h-[273px] rounded-lg bg-contain" style="background-image: url({{$globalPortfolio->portfolioImage[0]->image_url}})"></div>
+                <div class="w-full aspect-[3/2] rounded-lg bg-contain" style="background-image: url({{$globalPortfolio->portfolioImage[0]->image_url}})"></div>
                  <p class="text-black text-h3-lg font-bold font-serif">{{ $globalPortfolio->title }}</p>
              </div>
     
