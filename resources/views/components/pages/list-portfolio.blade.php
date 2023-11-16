@@ -1,4 +1,8 @@
 <x-app-layout gap="45px" title="ListPortfolio">
+    <x-slot:navbar>
+        <x-navbar />
+  </x-slot>
+  
     <div class="w-full h-full px-7 py-[18px] px-[20px] bg-white rounded-lg shadow flex-col justify-start items-start gap-6 flex flex-wrap">
         <div class="h-max flex flex-col md:flex-row justify-start items-start gap-3.5 ">
                 <select id="categoriesYear" class="text-normal-sm md:text-normal-lg">

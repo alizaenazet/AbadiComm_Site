@@ -11,7 +11,8 @@
 </head>
 <body class="h-max w-screen pt-[30px] px-[47px] md:px-[58px] lg:px-[156px] pb-[30px] bg-white flex-col justify-start items-center inline-flex " style="gap: {{$gap}}">
     <header class="w-full ">
-        <x-navbar />
+        {{-- <x-navbar /> --}}
+        {{ $navbar }}
     </header>
   {{ $slot }}
 </body>
