@@ -3,7 +3,7 @@
     <div class="py-[31px] w-full flex flex-center justify-center">
         <div class="w-[80%] max-h-[500px] md:max-h-[700px] overflow-y-auto flex flex-center justify-center flex-row flex-wrap gap-x-2 md:gap-x-4 lg:gap-x-8 gap-y-3 md:gap-y-3 lg:gap-y-3 ">
             @foreach ($globalActivityGallery as $gallery)
-            <img src={{$gallery->image_url}} alt="" class= "w-16 md:w-32 h-16 md:h-32 rounded-md">
+            <img src={{$gallery->image_url}} alt="" class= "aspect-[1/1] w-16 md:w-32 h-16 md:h-32 rounded-md">
             @endforeach
             
         </div>
