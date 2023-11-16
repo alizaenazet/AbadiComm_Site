@@ -1,5 +1,8 @@
 <x-app-layout 
     gap="39px" title="Partnersip">
+    <x-slot:navbar>
+        <x-navbar />
+    </x-slot>
 
     <h1 class="text-h1-lg font-serif">Be Our Partner</h1>
 

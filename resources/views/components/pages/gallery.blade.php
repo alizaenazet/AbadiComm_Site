@@ -1,5 +1,8 @@
 <x-app-layout 
     gap="20px" title="Gallery" >
+    <x-slot:navbar>
+        <x-navbar />
+    </x-slot>
     
     <h1 class="text-h1-lg text-center font-serif">Activity gallery</h1>
     <div id="galleryList" class="w-full h-fit flex flex-row flex-wrap gap-2 md:gap-3 justify-center">
