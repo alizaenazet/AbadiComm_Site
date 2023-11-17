@@ -31,7 +31,12 @@ class UserController extends Controller
 
     }
 
-    public function logout(){}
+    public function logout(Request $req){
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect('/login');
+    }
 
     public function sendEmail(){
         Password::sendResetLink(['email'=>'azetareklamongan@gmail.com']);
