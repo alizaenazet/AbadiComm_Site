@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GalleryActivityController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
@@ -171,6 +172,7 @@ Route::get('/list-portfolio/filter',function ()  {
     return redirect('/list-portfolio');
 });
 
+// Auth 
 Route::get('/login', function () {
     if (Auth::check()) {
         return redirect('/dashboard');
@@ -178,17 +180,23 @@ Route::get('/login', function () {
         return view('components.pages.login') ;
     }
 })->name('login');
-
-Route::get('/forget-password',[UserController::class,'resetChooseEmail']);
-Route::post('/forger-password/notice',[UserController::class,'sendEmail']);
-Route::post('/reset-password',[UserController::class,'resetPassword']);
 Route::get('/reset-password/{token}', function (string $token,Request $request) {
     return view('components.pages.reset-password-from')
     ->with('token',$token)->with('email',$request->query('email'));
 })->name('password.reset');
-Route::post('/login',[UserController::class,'login']);
-Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
-Route::post('/reset',[UserController::class,'resetPassword']);
 Route::get('/dashboard',function () {
    return view('dashboard');
 })->middleware('auth')->name('dashboard');
+Route::get('/forget-password',[UserController::class,'resetChooseEmail']);
+Route::post('/forger-password/notice',[UserController::class,'sendEmail']);
+Route::post('/reset-password',[UserController::class,'resetPassword']);
+Route::post('/login',[UserController::class,'login']);
+Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
+Route::post('/reset',[UserController::class,'resetPassword']);
+
+// Gallery
+Route::get('/dashboard/galleries',[GalleryActivityController::class,'showGalleryList'])->middleware('auth');
+Route::get('/dashboard/galleries/create', function () {
+    return view('components.pages.admin.create-gallery');
+})->middleware('auth');;
+Route::post('/dashboard/galleries/create', [GalleryActivityController::class,'uploadGallery'])->middleware('auth');
