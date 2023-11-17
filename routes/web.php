@@ -200,3 +200,4 @@ Route::get('/dashboard/galleries/create', function () {
     return view('components.pages.admin.create-gallery');
 })->middleware('auth');;
 Route::post('/dashboard/galleries/create', [GalleryActivityController::class,'uploadGallery'])->middleware('auth');
+Route::delete('/dashboard/galleries/{galleryActivity}', [GalleryActivityController::class,'deleteGallery'])->middleware('auth');

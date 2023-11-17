@@ -13,7 +13,7 @@ class GalleryActivityController extends Controller
     
     public function showGalleryList(){
         return view("components.pages.admin.gallery-list")
-        ->with('galleries',GalleryActivity::all());
+        ->with('galleries',GalleryActivity::all()->sortByDesc('updated_at'));
     }
 
     public function uploadGallery(Request $request){
@@ -36,6 +36,11 @@ class GalleryActivityController extends Controller
             'content' => $request['description']
         ]);
 
+        return redirect('/dashboard/galleries/');
+    }
+
+    public function deleteGallery(GalleryActivity $galleryActivity){
+        $galleryActivity->delete();
         return redirect('/dashboard/galleries/');
     }
 }
