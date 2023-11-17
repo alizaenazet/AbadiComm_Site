@@ -172,9 +172,12 @@ Route::get('/list-portfolio/filter',function ()  {
 });
 
 Route::get('/login', function () {
-   return view('components.pages.login') ;
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    }else{
+        return view('components.pages.login') ;
+    }
 })->name('login');
-
 
 Route::get('/forget-password',[UserController::class,'resetChooseEmail']);
 Route::post('/forger-password/notice',[UserController::class,'sendEmail']);
@@ -184,6 +187,7 @@ Route::get('/reset-password/{token}', function (string $token,Request $request) 
     ->with('token',$token)->with('email',$request->query('email'));
 })->name('password.reset');
 Route::post('/login',[UserController::class,'login']);
+Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
 Route::post('/reset',[UserController::class,'resetPassword']);
 Route::get('/dashboard',function () {
    return view('dashboard');
