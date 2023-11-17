@@ -17,7 +17,7 @@ gap="18px" title="admin login">
             <div class=" w-full h-full  flex flex-col gap-3 items-center " >
                 <p class=" w-fit h-full md:h-[72px] text-white text-input-sm md:text-input-lg text-ellipsis overflow-hidden" >{{$gallery->content}}</p>
                 <div class="w-full h-fit flex flex-row gap-1 justify-start">
-                    <a href="/dashboard/galleries/TODO:{$gallery}/update" type="button" class="w-max text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[10px] py-[8px] text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <a href="/dashboard/galleries/{{$gallery->id}}/update" type="button" class="w-max text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[10px] py-[8px] text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         update
                     </a>
                     <form action="/dashboard/galleries/{{$gallery->id}}" method="POST">

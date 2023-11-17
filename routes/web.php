@@ -199,5 +199,10 @@ Route::get('/dashboard/galleries',[GalleryActivityController::class,'showGallery
 Route::get('/dashboard/galleries/create', function () {
     return view('components.pages.admin.create-gallery');
 })->middleware('auth');;
+Route::get('/dashboard/galleries/{galleryActivity}/update', function (GalleryActivity $galleryActivity) {
+    return view('components.pages.admin.update-gallery')
+    ->with('gallery', $galleryActivity );
+})->middleware('auth');;
 Route::post('/dashboard/galleries/create', [GalleryActivityController::class,'uploadGallery'])->middleware('auth');
+Route::put('/dashboard/galleries/{galleryActivity}', [GalleryActivityController::class,'updateGallery'])->middleware('auth');
 Route::delete('/dashboard/galleries/{galleryActivity}', [GalleryActivityController::class,'deleteGallery'])->middleware('auth');
