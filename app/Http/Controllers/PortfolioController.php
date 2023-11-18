@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
 class PortfolioController extends Controller
@@ -89,5 +90,33 @@ class PortfolioController extends Controller
         ->with('yearFilterList', $data['yearsFilter']);
     }
 
+
+    public function showPortfolioList(){
+        return view('components.pages.admin.portfolio-list')
+        ->with('categories', Category::all()->sortByDesc('updated_at'))
+        ->with('portfolios', Portfolio::all()->sortByDesc('updated_at'));
+    }
+
+    public function create(){
+
+    }
+
+    public function delete(Portfolio $portfolio){
+        if (!is_object($portfolio)) {
+           return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
+        }
+        $currentCategoryImages = $portfolio->portfolioImage;
+
+        if (!$portfolio->delete()) {
+            return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
+        }
+
+        foreach ($currentCategoryImages as $image) {
+            $imagePath = str_replace("/storage/",'',$image->image_url);
+            Storage::disk('public')->delete($imagePath);
+        }
+
+        return  back()->with('portfolioStatus', 'portfolio berhasil dihapus');
+    }
 
 }

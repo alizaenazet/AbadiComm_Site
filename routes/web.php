@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\GalleryActivityController;
 use App\Http\Controllers\PortfolioController;
@@ -226,3 +227,16 @@ Route::put('/dashboard/team-member/{teamMember}',[TeamMemberController::class,'u
 // Division
 Route::post('/dashboard/division/create',[DivisionController::class,'create'])->middleware('auth');
 Route::delete('/dashboard/division/{division}',[DivisionController::class,'delete'])->middleware('auth');
+
+// Portfolio
+Route::get('/dashboard/portfolios',[PortfolioController::class,'showPortfolioList'])->middleware('auth');
+Route::get('/dashboard/portfolios/create',function (){
+    return view('')
+    ->with('categories', Category::all())->sortByDesc('updated_at');
+})->middleware('auth');
+Route::delete('/dashboard/portfolios/{portfolio}',[PortfolioController::class,'delete'])->middleware('auth');
+
+
+// Category
+Route::post('/dashboard/categories/create',[CategoryController::class,'create'])->middleware('auth'); 
+Route::delete('/dashboard/categories/{category}',[CategoryController::class,'delete'])->middleware('auth'); 
