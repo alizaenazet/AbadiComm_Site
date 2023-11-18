@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\GalleryActivityController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
 use App\Models\GalleryActivity;
 use App\Models\Portfolio;
 use App\Models\TeamMember;
-
+use App\Models\Division;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -171,6 +174,7 @@ Route::get('/list-portfolio/filter',function ()  {
     return redirect('/list-portfolio');
 });
 
+// Auth 
 Route::get('/login', function () {
     if (Auth::check()) {
         return redirect('/dashboard');
@@ -178,17 +182,47 @@ Route::get('/login', function () {
         return view('components.pages.login') ;
     }
 })->name('login');
-
-Route::get('/forget-password',[UserController::class,'resetChooseEmail']);
-Route::post('/forger-password/notice',[UserController::class,'sendEmail']);
-Route::post('/reset-password',[UserController::class,'resetPassword']);
 Route::get('/reset-password/{token}', function (string $token,Request $request) {
     return view('components.pages.reset-password-from')
     ->with('token',$token)->with('email',$request->query('email'));
 })->name('password.reset');
-Route::post('/login',[UserController::class,'login']);
-Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
-Route::post('/reset',[UserController::class,'resetPassword']);
 Route::get('/dashboard',function () {
    return view('dashboard');
 })->middleware('auth')->name('dashboard');
+Route::get('/forget-password',[UserController::class,'resetChooseEmail']);
+Route::post('/forger-password/notice',[UserController::class,'sendEmail']);
+Route::post('/reset-password',[UserController::class,'resetPassword']);
+Route::post('/login',[UserController::class,'login']);
+Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
+Route::post('/reset',[UserController::class,'resetPassword']);
+
+// Gallery
+Route::get('/dashboard/galleries',[GalleryActivityController::class,'showGalleryList'])->middleware('auth');
+Route::get('/dashboard/galleries/create', function () {
+    return view('components.pages.admin.create-gallery');
+})->middleware('auth');;
+Route::get('/dashboard/galleries/{galleryActivity}/update', function (GalleryActivity $galleryActivity) {
+    return view('components.pages.admin.update-gallery')
+    ->with('gallery', $galleryActivity );
+})->middleware('auth');;
+Route::post('/dashboard/galleries/create', [GalleryActivityController::class,'uploadGallery'])->middleware('auth');
+Route::put('/dashboard/galleries/{galleryActivity}', [GalleryActivityController::class,'updateGallery'])->middleware('auth');
+Route::delete('/dashboard/galleries/{galleryActivity}', [GalleryActivityController::class,'deleteGallery'])->middleware('auth');
+
+// Team Member
+Route::get('/dashboard/team-members',[TeamMemberController::class,'showTeamList'])->middleware('auth');
+Route::get('/dashboard/team-members/create',function (){
+    return view('components.pages.admin.create-team-member')->with('divisions',Division::all()->sortByDesc('updated_at'));
+})->middleware('auth');
+Route::get('/dashboard/team-members/{teamMember}/update',function (TeamMember $teamMember){
+    return view('components.pages.admin.update-team-member')
+    ->with('member',$teamMember)
+    ->with('divisions',Division::all()->sortByDesc('updated_at'));
+})->middleware('auth');
+Route::post('/dashboard/team-member/create',[TeamMemberController::class,'create'])->middleware('auth');
+Route::delete('/dashboard/team-member/{teamMember}',[TeamMemberController::class,'delete'])->middleware('auth');
+Route::put('/dashboard/team-member/{teamMember}',[TeamMemberController::class,'update'])->middleware('auth');
+
+// Division
+Route::post('/dashboard/division/create',[DivisionController::class,'create'])->middleware('auth');
+Route::delete('/dashboard/division/{division}',[DivisionController::class,'delete'])->middleware('auth');
