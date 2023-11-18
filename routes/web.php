@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\GalleryActivityController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
 use App\Models\GalleryActivity;
 use App\Models\Portfolio;
 use App\Models\TeamMember;
-
+use App\Models\Division;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -206,3 +208,21 @@ Route::get('/dashboard/galleries/{galleryActivity}/update', function (GalleryAct
 Route::post('/dashboard/galleries/create', [GalleryActivityController::class,'uploadGallery'])->middleware('auth');
 Route::put('/dashboard/galleries/{galleryActivity}', [GalleryActivityController::class,'updateGallery'])->middleware('auth');
 Route::delete('/dashboard/galleries/{galleryActivity}', [GalleryActivityController::class,'deleteGallery'])->middleware('auth');
+
+// Team Member
+Route::get('/dashboard/team-members',[TeamMemberController::class,'showTeamList'])->middleware('auth');
+Route::get('/dashboard/team-members/create',function (){
+    return view('components.pages.admin.create-team-member')->with('divisions',Division::all()->sortByDesc('updated_at'));
+})->middleware('auth');
+Route::get('/dashboard/team-members/{teamMember}/update',function (TeamMember $teamMember){
+    return view('components.pages.admin.update-team-member')
+    ->with('member',$teamMember)
+    ->with('divisions',Division::all()->sortByDesc('updated_at'));
+})->middleware('auth');
+Route::post('/dashboard/team-member/create',[TeamMemberController::class,'create'])->middleware('auth');
+Route::delete('/dashboard/team-member/{teamMember}',[TeamMemberController::class,'delete'])->middleware('auth');
+Route::put('/dashboard/team-member/{teamMember}',[TeamMemberController::class,'update'])->middleware('auth');
+
+// Division
+Route::post('/dashboard/division/create',[DivisionController::class,'create'])->middleware('auth');
+Route::delete('/dashboard/division/{division}',[DivisionController::class,'delete'])->middleware('auth');

@@ -50,13 +50,10 @@ gap="18px" title="admin login">
             $('#dropzone-file').change(function (e) { 
                 e.preventDefault();
                 const imageFile = this.files[0];
-                console.log('triggered');
-                console.log(imageFile);
                 $('#upload-area').hide();
                 $('#image-preview').addClass("aspect-[1/1] ");
                 let reader = new FileReader();
                 reader.onload = function(event){
-                    console.log(event.target.result);
                     $('#image-preview').attr('src', event.target.result);
                 }
                 reader.readAsDataURL(imageFile);
@@ -70,16 +67,13 @@ gap="18px" title="admin login">
 
             $('#description').change(function (e) { 
                 e.preventDefault();
-                console.log([$('#description').val() ,$('#description').val() != defaultDescrition]);
                 if ($('#description').val() != defaultDescrition) {
                     if (!updated.includes('description')) {
                         updated.push('description')
                         $('#updated').val(updated.toString());
                     }
                 }else{
-                    console.log('same change');
                     const indexOfValue = updated.indexOf("description");
-                    console.log(indexOfValue);
                     if (updated.includes('description')) {
                         updated.splice(indexOfValue,1)
                         $('#updated').val(updated.toString());
