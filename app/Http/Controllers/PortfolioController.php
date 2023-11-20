@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PortfolioImage;
+use App\Models\PortfolioPromoter;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\DB;
 
 class PortfolioController extends Controller
@@ -17,6 +21,10 @@ class PortfolioController extends Controller
                 "categoriesFilter" => 'required',
                 "yearsFilter" => 'required',
             ]);
+            
+
+
+
         }
         $data = $req;
         $categoriesIdFilter = array();
@@ -97,26 +105,113 @@ class PortfolioController extends Controller
         ->with('portfolios', Portfolio::all()->sortByDesc('updated_at'));
     }
 
-    public function create(){
+    public function create(Request $req){
+        $req->validate([
+            "categories" => 'required',
+            "promoters" => 'required',
+            'portfolioTitle' => 'required',
+            'time' => 'required',
+            "imageFiles" => 'required',
+            "imageFiles.*" => 'mimes:jpeg,jpg,png|max:25000',
+        ]);
 
+        $promoters = array();
+        $categories = array();
+        if (!str_contains($req['categories'],",")) {
+            $categories = array($req['categories']);
+        }else {
+            $categories = explode(",",$req['categories']);
+        };
+
+        if (!str_contains($req['promoters'],",")) {
+            $promoters = array($req['promoters']);
+        }else {
+            $promoters = explode(",",$req['promoters']);
+        };
+
+        $portfolio = Portfolio::create([
+            'title' => $req['portfolioTitle'],
+            'content' => $req['description'],
+            'date' => $req['time']
+        ]);
+        // $portfolio->title = $req['portfolioTitle'];
+        // $portfolio->content = $req['description'];
+        // $portfolio->date = $req['time'];
+
+        
+
+        foreach ($promoters as $key => $promoterName) {
+            $portfolio->portfolioPromoter()->create([
+                'name' => $promoterName,
+                'portfolio_id' => $portfolio->id
+            ]);
+        }
+        foreach ($categories as $key => $categoriesId) {
+            $portfolio->categories()->attach($categoriesId);
+        }
+
+        if($req->hasfile('imageFiles')) {
+            foreach($req->file('imageFiles') as $file)
+            {
+                $imageUrl = '/storage/'. $file->storePublicly('portfolio_images/'.$portfolio->id, 'public');
+                $portfolio->portfolioImage()->create([
+                    'image_url' => $imageUrl,
+                    'portfolio_id' => $portfolio->id
+                ]);
+            }
+        }
+
+        if ($portfolio->save()) {
+            return redirect('/dashboard/portfolios');
+        }
+        return back()->with('status','gagal membuat portfolio');
     }
 
     public function delete(Portfolio $portfolio){
         if (!is_object($portfolio)) {
            return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
         }
-        $currentCategoryImages = $portfolio->portfolioImage;
+        $currentPortfolioImages = $portfolio->portfolioImage;
 
         if (!$portfolio->delete()) {
             return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
         }
 
-        foreach ($currentCategoryImages as $image) {
+        foreach ($currentPortfolioImages as $image) {
             $imagePath = str_replace("/storage/",'',$image->image_url);
             Storage::disk('public')->delete($imagePath);
         }
 
         return  back()->with('portfolioStatus', 'portfolio berhasil dihapus');
+    }
+
+    public function changeImage(PortfolioImage $image,Request $request){
+        $request->validate([
+            'fileImage'
+        ]);
+        Validator::validate($request->all(),[
+            'fileImage' => [
+                File::image()
+                ->max('25mb')
+                ]
+            ]);
+        $deletedImagePath = str_replace("/storage/",'',$image->image_url);
+        $file = $request->file('fileImage');
+        $newImageUrl = '/storage/'. $file->storePublicly('portolio_image', 'public');
+        $image->image_url = $newImageUrl;
+        if ($image->save()) {
+            Storage::disk('public')->delete($deletedImagePath);
+            return back()->with("portfolioStatus","image berhasil diperbarui"); 
+        }
+            return back()->with("portfolioStatus","image gagal diperbarui"); 
+    }
+    public function deleteImage(PortfolioImage $image){
+        $deletedImagePath = str_replace("/storage/",'',$image->image_url);
+        if ($image->delete()) {
+            Storage::disk('public')->delete($deletedImagePath);
+            return back()->with("portfolioStatus","image berhasil dihapus"); 
+        }
+        return back()->with("portfolioStatus","image gagal dihapus"); 
     }
 
 }

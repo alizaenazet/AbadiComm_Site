@@ -1,7 +1,9 @@
 <x-app-layout gap="20px" title='{{$portfolio->title}}'>
+    <x-slot:navbar>
+        <x-navbar />
+    </x-slot>
     <div class="mt-6 w-full h-fit flex flex-col justify-center items-center gap-3">
         <div id="imageDisplay" class="aspect-[3/2] w-full max-h-[300px]  md:max-h-[578px] lg:w-fit lg:h-[638px]  rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div>
-        {{-- <div id="imageDisplay" class="w-[300px] h-[300px] md:w-[678px] md:h-[578px] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div> --}}
         <div class="flex flex-row h-max  overflow-x-auto gap-2">
             @foreach ($portfolio->portfolioImage as $image)
                 <img id={{$image->id}} class="imagesItem aspect-[3/2] max-w-[62px]  md:max-w-[72px]  hover:border-4 hover:border-accent hover:rounded-md cursor-pointer " src={{$image->image_url}}  alt="">

@@ -231,10 +231,13 @@ Route::delete('/dashboard/division/{division}',[DivisionController::class,'delet
 // Portfolio
 Route::get('/dashboard/portfolios',[PortfolioController::class,'showPortfolioList'])->middleware('auth');
 Route::get('/dashboard/portfolios/create',function (){
-    return view('')
-    ->with('categories', Category::all())->sortByDesc('updated_at');
+    return view('components.pages.admin.create-portfolio')
+    ->with('categories', Category::all()->sortByDesc('updated_at'));
 })->middleware('auth');
+Route::post('/dashboard/portfolios/create',[PortfolioController::class,'create'])->middleware('auth');
 Route::delete('/dashboard/portfolios/{portfolio}',[PortfolioController::class,'delete'])->middleware('auth');
+Route::put('/dashboard/portfolios/image/{image}/change',[PortfolioController::class,'changeImage'])->middleware('auth');
+Route::delete('/dashboard/portfolios/image/{image}/delete',[PortfolioController::class,'deleteImage'])->middleware('auth');
 
 
 // Category
