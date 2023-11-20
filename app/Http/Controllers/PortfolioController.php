@@ -105,6 +105,18 @@ class PortfolioController extends Controller
         ->with('portfolios', Portfolio::all()->sortByDesc('updated_at'));
     }
 
+    public function editPortfolioPage(Portfolio $portfolio){
+        $tempPromoters = $portfolio->portfolioPromoter()->select('name')->get()->toArray();
+   $currentPromoters = implode(',',array_column($tempPromoters,'name'));    
+    $tempCategories = $portfolio->categories->toArray() ;
+    $currentCategories = implode(',',array_column($tempCategories,'id'));
+    return view('components.pages.admin.update-portfolio')
+    ->with('portfolio', $portfolio)
+    ->with('currentCategories', $currentCategories)
+    ->with('currentPromoters', $currentPromoters)
+    ->with('categories', Category::all()->sortByDesc('updated_at'));
+    }
+
     public function create(Request $req){
         $req->validate([
             "categories" => 'required',
@@ -134,11 +146,6 @@ class PortfolioController extends Controller
             'content' => $req['description'],
             'date' => $req['time']
         ]);
-        // $portfolio->title = $req['portfolioTitle'];
-        // $portfolio->content = $req['description'];
-        // $portfolio->date = $req['time'];
-
-        
 
         foreach ($promoters as $key => $promoterName) {
             $portfolio->portfolioPromoter()->create([
@@ -146,8 +153,8 @@ class PortfolioController extends Controller
                 'portfolio_id' => $portfolio->id
             ]);
         }
-        foreach ($categories as $key => $categoriesId) {
-            $portfolio->categories()->attach($categoriesId);
+        foreach ($categories as $key => $categoryId) {
+            $portfolio->categories()->attach($categoryId);
         }
 
         if($req->hasfile('imageFiles')) {
@@ -167,6 +174,96 @@ class PortfolioController extends Controller
         return back()->with('status','gagal membuat portfolio');
     }
 
+    public function update(Portfolio $portfolio,Request $req){
+
+        
+        $deletedImages = $this->stringToArray($req['deletedImage']);
+        $changedFields = $this->stringToArray($req['changedFields']);
+        $resetedFields = $this->stringToArray($req['resetedFields']);
+        $portfolio->content = $req['description'];
+
+        foreach ($resetedFields as $key => $fieldName) {
+            if ($fieldName == 'promoters') {
+                $portfolio->portfolioPromoter()->delete();
+            }else{
+                $portfolio->categories()->detach();
+            }
+        }
+
+            foreach ($changedFields as $key => $field) {
+                switch ($field) {
+                    case 'title':
+                        $req->validate([
+                            'portfolioTitle' => 'required'
+                        ]);
+                        $portfolio->title = $req['portfolioTitle'];
+                        break;
+                    
+                    case 'time':
+                        $req->validate([
+                            'time' => 'required'
+                        ]);
+                        $portfolio->date = $req['time'];
+                        break;
+                    case 'categories':
+                        $req->validate([
+                            'categories' => 'required'
+                        ]);
+                        $currentCategories = $this->stringToArray($req['categories']);
+                        foreach ($currentCategories as $key => $categoryId) {
+                            $portfolio->categories()->findOr($categoryId,function () use($portfolio,$categoryId) {
+                                $portfolio->categories()->attach($categoryId);   
+                            });
+                        }
+
+                        break;
+                    case 'promoters':
+                            $req->validate([
+                                'time' => 'required'
+                            ]);
+                            $currentPromoters = $this->stringToArray($req['promoters']);
+                            foreach ($currentPromoters as $key => $promoterName) {
+                                $portfolio->portfolioPromoter()->firstOrCreate([
+                                    'name' => $promoterName
+                                ]);
+                            }
+                            break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+
+        if($req->hasfile('imageFiles')) {
+            $req->validate([
+                "imageFiles" => 'required',
+                "imageFiles.*" => 'mimes:jpeg,jpg,png|max:25000',
+            ]);
+            foreach($req->file('imageFiles') as $file)
+            {
+                $imageUrl = '/storage/'. $file->storePublicly('portfolio_images/'.$portfolio->id, 'public');
+                $portfolio->portfolioImage()->create([
+                    'image_url' => $imageUrl,
+                    'portfolio_id' => $portfolio->id
+                ]);
+            }
+        }
+        if (!(count($deletedImages) - $portfolio->portfolioImage()->count()) < 1) {
+            foreach ($deletedImages as $key => $imageId) {
+                $portfolioImage = PortfolioImage::find($imageId);
+                $deletedImagePath = str_replace("/storage/",'',$portfolioImage->image_url);
+                Storage::disk('public')->delete($deletedImagePath);
+                $portfolioImage->delete();
+            }
+        }
+
+        if ($portfolio->save()) {
+            return redirect('/dashboard/portfolios')->with('portfolioStatus','berhasil update portfolio');
+        }
+        return back()->with('status','gagal update portfolio');
+    }
+
+    
     public function delete(Portfolio $portfolio){
         if (!is_object($portfolio)) {
            return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
@@ -214,4 +311,14 @@ class PortfolioController extends Controller
         return back()->with("portfolioStatus","image gagal dihapus"); 
     }
 
+    private function stringToArray($inputString){
+        if (empty($inputString)) {
+            return array();
+        }
+        if (!str_contains($inputString,",")) {
+            return array($inputString);
+        }else {
+            return explode(",",$inputString);
+        };
+    }
 }
