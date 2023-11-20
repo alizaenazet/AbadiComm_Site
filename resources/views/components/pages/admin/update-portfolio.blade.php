@@ -3,7 +3,7 @@ gap="18px" title="admin login">
     <x-slot:navbar>
         <x-dashboard-navbar />    
     </x-slot> 
-    <h1 class="text-h1-sm md:text-h1-lg font-medium font-serif">Create Portfolio</h1>
+    <h1 class="text-h1-sm md:text-h1-lg font-medium font-serif">Edit Portfolio</h1>
     @if (session('status'))
     <div id="category-status-alert" class="alert alert-success">
         <div class="flex items-center p-[10px] mb-[5px] text-sm text-green-800 rounded-lg bg-success dark:bg-gray-800 dark:text-green-400" role="alert">
@@ -22,6 +22,10 @@ gap="18px" title="admin login">
         <h3 class="ms-2 mb-1 font-medium text-medium-sm md:text-medium-lg">Gambar</h3>
         <div class="w-full min-h-[80px] md:min-h-[90px] py-[3px] bg-gray-100 rounded-md  h-fit flex flex-col justify-center items-start ">
             <div id="image-list" class="flex flex-row h-max  overflow-x-auto gap-2">
+                @foreach ($portfolio->portfolioImage as $image)
+                <img  name='{{$image->id}}' class="imagesItem w-[93px] aspect-[3/2]   md:w-[137px]  rounded-md hover:rounded-xl cursor-pointer " 
+                src='{{$image->image_url}}'  alt="">
+                @endforeach
             </div>
         </div>
     </div>
@@ -62,10 +66,14 @@ gap="18px" title="admin login">
         </div>
       </div>
 
-    <form id="create-form" method="POST" action="/dashboard/portfolios/create" class="w-full md:justify-start" enctype="multipart/form-data">
+    <form id="create-form" method="POST" action="/dashboard/portfolios/{{$portfolio->id}}/update" class="w-full md:justify-start" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="categories" id="categories-val" value="">
-        <input type="hidden" name="promoters" id="promoters-val" value="">
+        @method("PUT")
+        <input type="hidden" name="categories" id="categories-val" value="{{$currentCategories}}">
+        <input type="hidden" name="promoters" id="promoters-val" value="{{$currentPromoters}}">
+        <input type="hidden" name="deletedImage" id="deleted-images" value="">
+        <input type="hidden" name="changedFields" id="changed-fields" value="">
+        <input type="hidden" name="resetedFields" id="reseted-fields" value="">
 
       <div class="w-full justify-start  mb-12">
           <label for="attachment"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-[10px] py-[6px]  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer">
@@ -77,15 +85,15 @@ gap="18px" title="admin login">
           @enderror
       </div>
 
-    <div class="relative z-0 w-full mb-6 group">
-        <input  type="text" name="portfolioTitle" id="portfolio-title" class="block py-2.5 px-0 w-full text-input-sm md:text-input-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-        <label for="portfolio-title" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Judul portfolio</label>
+    <div class="relative z-0 w-full mb-6 group md:w-[60%]">
+        <input  type="text" name="portfolioTitle" id="portfolio-title" class="block py-2.5 px-0 w-full text-input-sm md:text-input-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  value="{{$portfolio->title}}"/>
+        <label for="portfolio-title" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
         @error('portfolioTitle')
             <p class="text-input-sm md:text-input-lg text-gray-800">{{$message}}</p>
         @enderror
     </div>
-    <div class="relative z-0 w-full mb-6 group">
-        <input type="date"  name="time" id="time" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+    <div class="relative z-0 w-full mb-6 group md:w-[60%]">
+        <input type="date"  name="time" id="time" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  value="{{$portfolio->date}}"/>
         <label for="time" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Waktu</label>
         @error('time')
             <p class="text-input-sm md:text-input-lg text-gray-800">{{$message}}</p>
@@ -108,6 +116,11 @@ gap="18px" title="admin login">
         </div>
 
         <div id="category-list" class="w-full md:w-[60%] h-fit flex flex-col gap-2 bg-gray-200 px-[8px] py-[5px] rounded-md">
+            @foreach ($portfolio->categories as $category)
+            <div class="flex w-full justify-between items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-100 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                <span class="flex-1 text-start text-input-sm md:text-input-lg font-normal ms-3 whitespace-nowrap text-ellipsis overflow-hidden">{{$category->name}}</span>
+            </div>
+            @endforeach
         </div>
     </div>
     
@@ -116,7 +129,7 @@ gap="18px" title="admin login">
 
         <div class="w-full h-fit flex flex-row gap-2 items-end">
             <div class="relative w-fit">
-                <input id="add-promoter-input"  class="block w-full px-[12px] py-[15px]  text-input-sm md:text-input-lg text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="penyelenggara..." required>
+                <input id="add-promoter-input"  class="block w-full px-[12px] py-[15px]  text-input-sm md:text-input-lg text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="penyelenggara..." >
                 <button id="add-promoter-button" class=" text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-normal-sm md:text-normal-lg rounded-lg text-sm px-[8px] py-[5px] dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
             </div>
             @error('promoters')
@@ -127,15 +140,19 @@ gap="18px" title="admin login">
 
 
         <div id="promoter-list" class="w-full md:w-[60%] h-fit flex flex-col gap-2 bg-gray-200 px-[8px] py-[5px] rounded-md">
-
+            @foreach ($portfolio->portfolioPromoter as $promoter)
+            <div class="flex w-full justify-between items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-100 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                <span class="flex-1 text-start text-input-sm md:text-input-lg font-normal ms-3 whitespace-nowrap text-ellipsis overflow-hidden">{{$promoter->name}}</span>
+            </div>
+            @endforeach
         </div>
     </div>
 
     <div class="w-full h-fit mb-6">
         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
-        <textarea id="description" name="description" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-input-sm md:text-input-lg" placeholder="Deskripsi..."></textarea>
+        <textarea id="description" name="description" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-input-sm md:text-input-lg" placeholder="Deskripsi...">{{$portfolio->content}}</textarea>
     </div>
-    <button type="submit" form="create-form" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-[10px] py-[6px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+    <button type="submit" form="create-form" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-[10px] py-[6px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan</button>
 </form>
   
 
@@ -143,10 +160,75 @@ gap="18px" title="admin login">
         $(document).ready(function () {
             var categories = [];
             var promoters = [];
+            var currentTitle = $('#portfolio-title').val();
+            var currentTime = $('#time').val();
+            var changedFields = []
+            var deletedImagesId = []
+
+            if (($('#categories-val').val()).length > 2) {
+                categories = ($('#categories-val').val()).split(",");
+            }
+
+            if (($('#promoters-val').val()).length > 2) {
+                promoters = ($('#promoters-val').val()).split(",")
+            }
 
 
             const imageDataTransfer = new DataTransfer(); 
             
+            $('#portfolio-title').change(function (e) { 
+                if (currentTitle != $('#portfolio-title').val()) {
+                    if (!changedFields.includes('title')) {
+                        changedFields.push('title')
+                    }
+                    $('#changed-fields').val(changedFields.toString());
+                }else if(changedFields.includes('title')) {
+                    var index = changedFields.indexOf('title');
+                    changedFields.splice(index, 1);
+                    $('#changed-fields').val(changedFields.toString());
+                }
+            });
+
+            $('#time').change(function (e) { 
+                if (currentTime != $('#portfolio-title').val()) {
+                    if (!changedFields.includes('time')) {
+                        changedFields.push('time')
+                    }
+                    $('#changed-fields').val(changedFields.toString());
+                }else if(changedFields.includes('time')) {
+                    var index = changedFields.indexOf('time');
+                    changedFields.splice(index, 1);
+                    $('#changed-fields').val(changedFields.toString());
+                }
+            });
+
+            $('img.imagesItem').click(function (e) { 
+                    var name = $(this).attr('name');
+                    var imageUrl = $(this).attr('src');
+                    $('#update-file-image').attr('image-name', name);
+                    $('#delete-file-image').attr('image-name', name);
+                    $('#modal-image').attr('src', imageUrl);
+                    $('#image-modal').show();
+                })
+            
+            $('#delete-file-image').click(function (e) { 
+                    e.preventDefault();
+                    var name = $(this).attr('image-name');
+                    for(let i = 0; i < imageDataTransfer.items.length; i++){
+                        if(name === imageDataTransfer.items[i].getAsFile().name){
+                            imageDataTransfer.items.remove(i);
+                            break;
+                        }
+                    }
+                    if (name.length == 36) {
+                        deletedImagesId.push(name)
+                        $('#deleted-images').val(deletedImagesId.toString());
+                    }
+                    $('#attachment')[0].files = imageDataTransfer.files;
+                    $(`img[name = "${name}"]`).remove()
+                    $('#image-modal').hide();
+                });
+
             $('#close-modal-button').click(function (e) { 
                 e.preventDefault();
                 $('#image-modal').hide();
@@ -244,8 +326,14 @@ gap="18px" title="admin login">
             $('#reset-category-button').click(function (e) { 
                 e.preventDefault();
                 categories  = []
-                $('#categories-val').val(categories.toString());
+                $('#categories-val').val("");
+                $('#reseted-fields').val('categories');
                 $('#category-list').empty();
+                var index = changedFields.indexOf('categories');
+                if (index !== -1) {
+                    changedFields.splice(index, 1);
+                    $('#changed-fields').val(changedFields.toString());
+                }
             });
 
 
@@ -261,6 +349,10 @@ gap="18px" title="admin login">
                         <span class="flex-1 text-start text-input-sm md:text-input-lg font-normal ms-3 whitespace-nowrap text-ellipsis overflow-hidden">${categoryName}</span>
                     </div>
                     `);
+                    if (!changedFields.includes('categories')) {
+                    changedFields.push('categories')
+                    $('#changed-fields').val(changedFields.toString());
+                    }
                 }
             });
 
@@ -275,14 +367,25 @@ gap="18px" title="admin login">
                         <span class="flex-1 text-start text-input-sm md:text-input-lg font-normal ms-3 whitespace-nowrap text-ellipsis overflow-hidden">${inputValue}</span>
                     </div>
                     `);
+
+                    if (!changedFields.includes('promoters')) {
+                    changedFields.push('promoters')
+                    $('#changed-fields').val(changedFields.toString());
+                    }
                 }
             });
 
             $('#reset-portfolio-button').click(function (e) { 
                 e.preventDefault();
                 promoters = []
-                $('#promoters-val').val(promoters.toString());
+                $('#promoters-val').val("");
+                $('#reseted-fields').val('promoters');
                 $('#promoter-list').empty();
+                var index = changedFields.indexOf('promoters');
+                if (index !== -1) {
+                    changedFields.splice(index, 1);
+                    $('#changed-fields').val(changedFields.toString());
+                }
             });
             
 
