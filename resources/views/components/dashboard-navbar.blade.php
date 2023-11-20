@@ -11,7 +11,7 @@
         <div id="dropdown" class="z-10 hidden drop-shadow-md bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ">
             <ul class="p-[8px] text-sm text-gray-700  dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
             <li>
-                <a href="/list-portfolio" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                <a href="/dashboard/settings" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
             </li>
             <li>
                 <form action="/logout" method="POST" class="w-full h-fit">
@@ -24,10 +24,10 @@
     </div>
 
     <div class="hidden md:flex flex-row gap-1  ">
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Settings</button>
+        <a href="/dashboard/settings" type="button" class="text-white h-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[9px] py-[6px]  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Settings</a>
         <form action="/logout" method="POST" class="w-full h-full">
         @csrf
-        <button type="submit" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Logout</button>
+        <button type="submit" class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 text-input-sm md:text-input-lg rounded-lg  h-fit px-[9px] py-[6px] text-center  dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Logout</button>
         </form>
     </div>
 </div>

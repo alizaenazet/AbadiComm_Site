@@ -37,7 +37,7 @@ gap="18px" title="admin login">
         @endif
 
 
-        <h2 class="text-h1-sm md:text-h2-lg">List kategori </h2>
+        <h2 class="text-h1-sm md:text-h2-lg">List portfolio </h2>
         <div class="flex flex-row w-full flex-wrap gap-2 items-start">
             <a href='/dashboard/portfolios/create' class="w-max">
                 <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-normal-sm md:text-input-lg px-[10px] md:px-[10px] py-[5px] md:py-[5px] text-center  dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Tambah Portfolio</button> 
@@ -128,14 +128,14 @@ gap="18px" title="admin login">
            </div>
 
            <div class="w-full h-fit flex flex-row gap-1 justify-start">
-            <a href="/dashboard/portfolios/{{$portfolio->id}}/update" type="button" class="w-max border-[1px] border-accent text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[10px] py-[8px] text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <a href="/dashboard/portfolios/{{$portfolio->id}}/update" type="button" class="w-max h-fit border-[1px] border-accent text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[10px] py-[8px] text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 update
             </a>
             <form action="/dashboard/portfolios/{{$portfolio->id}}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="w-max text-white bg-red-700 border-[1px] border-accent hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[10px] py-[8px] text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="w-6 h-fit  fill-accent" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                <button type="submit" class="w-max h-fit text-white bg-red-700 border-[1px] border-accent hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[10px] py-[8px] text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg class="w-6 h-[24px]  fill-accent" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
                 </button>
             </form>
         </div>
