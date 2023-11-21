@@ -98,6 +98,18 @@ class PortfolioController extends Controller
         ->with('yearFilterList', $data['yearsFilter']);
     }
 
+    public function showPortfolioListPage(){
+        $portfolios = Portfolio::all()->sortByDesc('updated_at');
+        $categories = Category::all();
+        $years = range(2018,date("Y"));
+        return view('components.pages.list-portfolio')
+                        ->with('portfolios', $portfolios)
+                        ->with('years', $years)
+                        ->with('categories', $categories)
+                        ->with('categoriesFilterList','')
+                        ->with('categoriesFilterNameList', [])
+                        ->with('yearFilterList','');
+    }
 
     public function showPortfolioList(){
         return view('components.pages.admin.portfolio-list')
