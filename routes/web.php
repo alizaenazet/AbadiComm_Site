@@ -135,4 +135,8 @@ Route::delete('/dashboard/portfolios/image/{image}/delete',[PortfolioController:
 
 // Category
 Route::post('/dashboard/categories/create',[CategoryController::class,'create'])->middleware('auth'); 
-Route::delete('/dashboard/categories/{category}',[CategoryController::class,'delete'])->middleware('auth'); 
+Route::delete('/dashboard/categories/{category}',[CategoryController::class,'delete'])->middleware('auth');
+
+// Settings
+Route::get('/dashboard/settings',[UserController::class,'showSettingPage'])->middleware('auth');
+Route::put('/dashboard/settings',[UserController::class,'updateUserSetting'])->middleware('auth');
