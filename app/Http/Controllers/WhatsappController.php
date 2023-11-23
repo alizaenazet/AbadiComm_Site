@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WhatsappNumber;
 use Illuminate\Http\Request;
 
 class WhatsappController extends Controller
@@ -66,8 +67,11 @@ class WhatsappController extends Controller
         $message = "Selamat pagi, siang, atau malam. Semoga Anda sehat dan bahagia.%0A".
             $pesanInstansi." ".$pesanKeperluan."%0A%0A".$pesanInformasiTambahan."%0A Senang dapat menghubungi anda.%0ATerimakasih"
         ;
-        // $message = str_replace(" ","%20",$message);
-        $directWhatsappUrl = 'https://api.whatsapp.com/send/?phone=6281331720920&text='.$message.'&type=phone_number&app_absent=0';
+
+        $contactWhatsapp = WhatsappNumber::where('name', 'contact')->first();
+        $phoneNumberContact = $contactWhatsapp->phone_number;
+        $newContactWhatsapp = "62".substr($phoneNumberContact,1);
+        $directWhatsappUrl = 'https://api.whatsapp.com/send/?phone='.$newContactWhatsapp.'&text='.$message.'&type=phone_number&app_absent=0';
         return redirect()->away($directWhatsappUrl);
     }
 
@@ -104,8 +108,11 @@ class WhatsappController extends Controller
         if (!empty($req['informasiPenawaran'])) {
             $message = $message . $pesanInformasiPenawaran;
         }
+        $partnerWhatsapp = WhatsappNumber::where('name','partner')->first();
+        $phoneNumberPartner = $partnerWhatsapp->phone_number;
+        $newPartnerWhatsapp = "62".substr($phoneNumberPartner,1);
         $message = $message . "Senang dapat menghubungi anda.%0A Terimakasih";
-        $directWhatsappUrl = 'https://api.whatsapp.com/send/?phone=6281331720920&text='.$message.'&type=phone_number&app_absent=0';
+        $directWhatsappUrl = 'https://api.whatsapp.com/send/?phone='.$newPartnerWhatsapp.'&text='.$message.'&type=phone_number&app_absent=0';
         return redirect()->away($directWhatsappUrl);
     }
 }

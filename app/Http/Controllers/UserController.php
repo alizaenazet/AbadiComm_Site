@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\WhatsappNumber;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
@@ -76,6 +78,60 @@ class UserController extends Controller
                 : back()->withErrors(['email' => [__($status)]]);
     }
 
+    public function showSettingPage(){
+        $user = User::all()->first();
+        $whatsappContact = WhatsappNumber::where('name', 'contact')->get()->first();
+        $whatsappPartner = WhatsappNumber::where('name', 'partner')->get()->first();
+        return view ('components.pages.admin.settings')
+            ->with('user', $user )
+            ->with('whatsappContact', $whatsappContact)
+            ->with('whatsappPartner', $whatsappPartner);
+    }
+
+    public function updateUserSetting(Request $request){
+        $user = User::all()->first();
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'password' => 'required|min:8|confirmed',
+            'email' => 'required|email',
+            'contact' => 'nullable|min:7|max:13',
+            'partner' =>'nullable|min:7|max:13'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/dashboard/settings') 
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $user->name = $request->username;
+        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
+        if ($request->filled('contact')) {
+            $whatsappContact =  WhatsappNumber::firstOrCreate(
+                ['name' => 'contact']
+            );
+            $whatsappContact->phone_number =  $request->contact;
+            $whatsappContact->save();
+
+        }
+        if ($request->filled('partner')) {
+            $whatsappPartner =  WhatsappNumber::firstOrCreate(
+                ['name' => 'partner']
+            );
+            $whatsappPartner->phone_number =  $request->partner;
+            $whatsappPartner->save();
+        }
+        $user->save();
+
+        return redirect('/dashboard');
+        
+
+        
+
+
+    }
+
     
 
     private function hideEmail($email) : string{
@@ -97,6 +153,8 @@ class UserController extends Controller
     
         return $maskedEmail;
     }
+
+   
 
    
 }
