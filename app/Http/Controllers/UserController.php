@@ -94,7 +94,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required|min:8|confirmed',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
             'contact' => 'nullable|min:7|max:13',
             'partner' =>'nullable|min:7|max:13'
         ]);
@@ -106,7 +106,9 @@ class UserController extends Controller
         }
         $user->name = $request->username;
         $user->password = Hash::make($request->password);
-        $user->email = $request->email;
+        if ($request->filled('email')){
+            $user->email = $request->email;
+        }
         if ($request->filled('contact')) {
             $whatsappContact =  WhatsappNumber::firstOrCreate(
                 ['name' => 'contact']

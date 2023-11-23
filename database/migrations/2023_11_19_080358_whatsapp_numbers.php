@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('whatsapp_numbers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->enum('name', ["contact" , "partner"]);
-            $table->string('phone_number',200)->nullable();
+            $table->string('phone_number',20)->nullable();
             $table->timestamps();
         });
     }
