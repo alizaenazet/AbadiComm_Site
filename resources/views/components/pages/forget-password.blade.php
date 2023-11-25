@@ -6,6 +6,9 @@ gap="12px" title="admin login">
             <p class="text-blue-600 cursor-pointer hover:text-accent hover:font-bold">kembali</p>
         </a>
     </div>
+    @if ($errors->has('email'))
+    <p>some thing wrong <br> {{$errors->get('email')}}</p>
+    @endif
     <form action="/forger-password/notice" method="POST" class="w-full h-full">
         @csrf
     <button type="submit" class="w-full h-full flex justify-center">

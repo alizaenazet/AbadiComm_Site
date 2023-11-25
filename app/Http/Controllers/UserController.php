@@ -41,9 +41,12 @@ class UserController extends Controller
     }
 
     public function sendEmail(){
-        Password::sendResetLink(['email'=>'azetareklamongan@gmail.com']);
         $user = User::all()->first();
-        return view('components.pages.forget-password-notice')->with('email', $this->hideEmail($user->email));
+        $status = Password::sendResetLink(['email'=> $user->email]);
+        if ($status === Password::RESET_LINK_SENT) {
+            return view('components.pages.forget-password-notice')->with('email', $this->hideEmail($user->email));
+        }
+        back()->withErrors(['email' => __($status)]);
     }
    
 
@@ -87,51 +90,48 @@ class UserController extends Controller
             ->with('whatsappContact', $whatsappContact)
             ->with('whatsappPartner', $whatsappPartner);
     }
-
+    
     public function updateUserSetting(Request $request){
         $user = User::all()->first();
-
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'password' => 'required|min:8|confirmed',
+        
+        $request->validate([
+            'username' => 'required|min:5',
+            'password' => 'nullable|min:8|',
             'email' => 'nullable|email',
-            'contact' => 'nullable|min:7|max:13',
-            'partner' =>'nullable|min:7|max:13'
+            'contact' => 'nullable|min:8|max:13|starts_with:08',
+            'changedFields' => 'required|min:4',
+            'partner' =>'nullable|min:8|starts_with:08'
         ]);
 
-        if ($validator->fails()) {
-            return redirect('/dashboard/settings') 
-                ->withErrors($validator)
-                ->withInput();
+        $changedFields = $this->stringToArray($request['changedFields']);
+        foreach ($changedFields as $key => $fieldName) {
+            switch ($fieldName) {
+                case 'password':
+                    $user->password = $request['password'];
+                    break;
+                case 'username':
+                    $user->name = $request['username'];
+                    break;
+                case 'email':
+                    $user->email = $request['email'];
+                    break;
+                case 'contact':
+                    $whatsappContact =  WhatsappNumber::firstOrCreate(
+                    ['name' => 'contact']);
+                    $whatsappContact->phone_number =  $request->contact;
+                    $whatsappContact->save();
+                    break;
+                case 'partner':
+                    $whatsappPartner =  WhatsappNumber::firstOrCreate(
+                    ['name' => 'partner']);
+                    $whatsappPartner->phone_number =  $request->partner;
+                    $whatsappPartner->save();
+                    break;
+            }
         }
-        $user->name = $request->username;
-        $user->password = Hash::make($request->password);
-        if ($request->filled('email')){
-            $user->email = $request->email;
-        }
-        if ($request->filled('contact')) {
-            $whatsappContact =  WhatsappNumber::firstOrCreate(
-                ['name' => 'contact']
-            );
-            $whatsappContact->phone_number =  $request->contact;
-            $whatsappContact->save();
-
-        }
-        if ($request->filled('partner')) {
-            $whatsappPartner =  WhatsappNumber::firstOrCreate(
-                ['name' => 'partner']
-            );
-            $whatsappPartner->phone_number =  $request->partner;
-            $whatsappPartner->save();
-        }
+        
         $user->save();
-
         return redirect('/dashboard');
-        
-
-        
-
-
     }
 
     
@@ -158,5 +158,14 @@ class UserController extends Controller
 
    
 
-   
+    private function stringToArray($inputString){
+        if (empty($inputString)) {
+            return array();
+        }
+        if (!str_contains($inputString,",")) {
+            return array($inputString);
+        }else {
+            return explode(",",$inputString);
+        };
+    }
 }
