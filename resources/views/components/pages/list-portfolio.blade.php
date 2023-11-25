@@ -7,8 +7,8 @@
         <div class="h-max flex flex-col md:flex-row justify-start items-start gap-3.5 ">
                 <select id="categoriesYear" class="text-normal-sm md:text-normal-lg">
                     <option  disabled selected>tahun </option>
-                    @foreach ($years as $year)
-                    <option  value={{$year}}>{{$year}}</option>
+                    @foreach ($years as $yearOption)
+                    <option  value={{$yearOption->year}}>{{$yearOption->year}}</option>
                     @endforeach
                 </select>
                 <select id="categoriesSelect" class="w-full text-normal-sm md:text-normal-lg ">
@@ -21,8 +21,8 @@
 
         <div  id="list-category" class="w-full min-h-max p-2.5 rounded-md justify-start items-start gap-2.5 flex flex-row flex-wrap">
             @forelse ($categoriesFilterNameList as $index => $filterCagetory)
-            <div id={{$filterCagetory}} class="filterItem px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex hover:bg-secondary cursor-pointer">
-                <div class="text-black text-base text-input-sm md:text-input-lg  lg:text-medium-lg font-normal font-sans hover:text-white">{{$filterCagetory}}</div>
+            <div id={{$filterCagetory->name}} class="filterItem px-[22px] py-[3px] rounded-[30px] border-2 border-amber-300 justify-center items-center gap-2.5 flex hover:bg-secondary cursor-pointer">
+                <div class="text-black text-base text-input-sm md:text-input-lg  lg:text-medium-lg font-normal font-sans hover:text-white">{{$filterCagetory->name}}</div>
             </div>
             @empty
                 {{-- Do noting --}}
