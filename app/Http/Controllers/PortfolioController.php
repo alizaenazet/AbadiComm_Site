@@ -45,6 +45,7 @@ class PortfolioController extends Controller
         $portfolios = [];
         $categoriesFilterNameList = [];
         $categories = [];
+        $portfoliosId = [];
         $tempCategories = Category::all();
         if (strlen($data['categoriesFilter']) > 0) {
             foreach ($tempCategories as $key => $category) {
@@ -61,10 +62,11 @@ class PortfolioController extends Controller
         foreach ($categories as $key => $category) {
             foreach($category->portfolios as $key => $valuePortfolios) {
             array_push($portfolios, $valuePortfolios);
+            array_push($portfoliosId, $valuePortfolios->id);
             }
         }
         }
-    //    
+         
         if (strlen($data['yearsFilter']) > 0) {
             if ($categoriesIdFilter[0] == null) {
                 // $portfolioByYear = DB::table('portfolios')->whereRaw('YEAR(`date`) in ?', '(2021,2012,2015,2020)')->get();
@@ -77,7 +79,7 @@ class PortfolioController extends Controller
                 }
                 array_push($portfolios,...$portfolioByYear);
             }else{
-                $portfolioByYear = Portfolio::whereNotIn('id',$categoriesIdFilter)
+                $portfolioByYear = Portfolio::whereNotIn('id',$portfoliosId)
                 ->get();
                 foreach ($portfolioByYear as $key => $portfolio) {
                     if (in_array($portfolio->year(),$yearsIdFilter)) {
@@ -87,7 +89,6 @@ class PortfolioController extends Controller
         }}
         
         
-
         $years = range(2018,date("Y"));
         return view('components.pages.list-portfolio')
         ->with('portfolios', $portfolios)
