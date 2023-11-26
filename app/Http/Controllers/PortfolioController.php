@@ -242,16 +242,13 @@ class PortfolioController extends Controller
         if (!is_object($portfolio)) {
            return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
         }
-        $currentPortfolioImages = $portfolio->portfolioImage;
 
         if (!$portfolio->delete()) {
             return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
         }
 
-        foreach ($currentPortfolioImages as $image) {
-            $imagePath = str_replace("/storage/",'',$image->image_url);
-            Storage::disk('public')->delete($imagePath);
-        }
+        $dirPath = str_replace("/storage/",'','portfolio_images/'.$portfolio->id);
+        Storage::deleteDirectory($dirPath);
 
         return  back()->with('portfolioStatus', 'portfolio berhasil dihapus');
     }
