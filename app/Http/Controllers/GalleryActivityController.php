@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryActivityController extends Controller
 {
@@ -40,6 +41,8 @@ class GalleryActivityController extends Controller
     }
 
     public function deleteGallery(GalleryActivity $galleryActivity){
+        $imagePath = str_replace("/storage/",'',$galleryActivity->image_url);
+        Storage::disk('public')->delete($imagePath);
         $galleryActivity->delete();
         return redirect('/dashboard/galleries/');
     }
@@ -65,10 +68,11 @@ class GalleryActivityController extends Controller
                             ->max('25mb')
                     ]
                 ]);
+                $deletedImagePath = str_replace("/storage/",'',$galleryActivity->image_url);
                 $file = $request->file('fileImage');
                 $newImageUrl = '/storage/'. $file->storePublicly('gallery_activity', 'public');
                 $galleryActivity->image_url = $newImageUrl;
-
+                Storage::disk('public')->delete($deletedImagePath);
             }else {
                 $request->validate([
                     'description' => 'required'
