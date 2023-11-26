@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class CategoryPortfolio extends Model
 {
     use HasFactory,HasUlids;
+
+    
 }

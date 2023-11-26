@@ -1,6 +1,10 @@
 <x-app-layout
   gap="0px" title="Navigation bar">
-  <x-welcome />
+  <x-slot:navbar>
+        <x-navbar />
+  </x-slot>
+
+    <x-welcome />
     <x-pages.about-us/>
     <x-pages.service/>
     <x-pages.welcome-gallery/>
