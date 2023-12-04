@@ -4,7 +4,7 @@
         <a href="/list-portfolio" class="font-sans text-h3-lg border-b-2 border-accent text-accent">Semua event kami</a>
     </div>
     <div class="h-max w-full flex flex-row flex-wrap justify-center items-start gap-x-4 gap-y-10 lg:gap-10">
-        @foreach ($globalPortfolios as $portfolio)
+        @foreach ($portfolios as $portfolio)
         <div class="flex flex-wrap flex-col w-full md:w-[40%] lg:w-[30%] gap-y-3 justify-start items-start">
 
             <div class="flex w-full flex-col gap-1">

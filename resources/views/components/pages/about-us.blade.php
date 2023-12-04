@@ -56,8 +56,8 @@
 <div class="flex flex-col items-center justify-center gap-6">
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our team</h1>
     <div class="flex  justify-center items-center flex-row flex-wrap gap-1 md:gap-2">
-        @foreach ($globalTeamMembers as $teamMember)
-            <img src={{$teamMember->image_url}} alt=""
+        @foreach ($teamMembers as $imageUrl)
+            <img src={{$imageUrl}} alt=""
                 class="w-20 h-20 md:w-32  md:h-32 rounded-md hover:-translate-y-1 hover:scale-400">
         @endforeach
     </div>

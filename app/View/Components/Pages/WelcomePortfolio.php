@@ -5,6 +5,9 @@ namespace App\View\Components\Pages;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Cache;
+use App\Models\Portfolio;
+
 
 class WelcomePortfolio extends Component
 {
@@ -21,6 +24,10 @@ class WelcomePortfolio extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.pages.welcome-portfolio');
+        $portfolios = Cache::rememberForever("portfolios", function (){
+            return Portfolio::all()->sortByDesc('updated_at');
+        });
+        return view('components.pages.welcome-portfolio')
+        ->with('portfolios',$portfolios->take(4)->all());
     }
 }
