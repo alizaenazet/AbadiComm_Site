@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+
 
 class CategoryController extends Controller
 {
@@ -17,6 +19,7 @@ class CategoryController extends Controller
         ]);
 
         if (is_object($category)) {
+            Cache::forget('categories');
             return back()->with("categoryStatus","kategori berhasil ditambahkan");
         }
         return back()->with("categoryStatus","kategori gagal ditambahkan");
@@ -25,6 +28,7 @@ class CategoryController extends Controller
     public function delete(Category $category){
         if (is_object($category)) {
             $category->delete();
+            Cache::forget('categories');
             return back()->with("categoryStatus","kategori berhasil dihapus");
         }
         return back()->with("categoryStatus","kategori gagal dihapus");
