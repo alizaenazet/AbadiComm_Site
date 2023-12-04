@@ -11,6 +11,7 @@ use App\Models\GalleryActivity;
 use App\Models\Portfolio;
 use App\Models\PortfolioImage;
 use App\Models\TeamMember;
+use App\Models\PortfolioPromoter;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,31 +23,38 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory()->create([
+            "id" => 1,
+            'name' => 'admin',
+            'password' => bcrypt('admin123'),
+            'email' => 'admin@email.com',
+        ]);
 
-        Division::factory()->has(
-            TeamMember::factory()->count(3),
-            'teamMembers'
-            )->count(3)->create();
+        // Division::factory()->has(
+        //     TeamMember::factory()->count(3),
+        //     'teamMembers'
+        //     )->count(3)->create();
+        //     for ($i=0; $i < 14; $i++) { 
+        //         # code...
+        //         Portfolio::factory()->has(
+        //             PortfolioImage::factory()->count(rand(1,5)),
+        //             'portfolioImage'
+        //             )->has(
+        //             PortfolioPromoter::factory()->count(rand(1,3)),
+        //             'portfolioPromoter'
+        //             )->has(
+        //                 Category::factory()->count(rand(1,3)),
+        //             )->count(1)->create();
+        //     }
 
-        Portfolio::factory()->has(
-            PortfolioImage::factory()->count(1),
-            'portfolioImage'
-            )->has(
-                Category::factory()->count(1),
-            )->count(8)->create();
 
 
 
+        // // Article::factory()->count(2)->create();
 
-        Article::factory()->count(2)->create();
+        // // GalleryActivity::factory()->count(3)->create();
 
-        GalleryActivity::factory()->count(3)->create();
-
-        ContactMenu::factory()->count(3)->create();
+        // ContactMenu::factory()->count(3)->create();
 
 
     }   
