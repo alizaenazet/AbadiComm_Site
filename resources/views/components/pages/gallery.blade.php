@@ -5,7 +5,7 @@
     </x-slot>
     
     <h1 class="text-h1-lg text-center font-serif">Activity gallery</h1>
-    <div id="galleryList" class="w-full h-fit flex flex-row flex-wrap gap-2 md:gap-3 justify-center">
+    <div id="galleryList" class="w-full h-fit flex flex-row flex-wrap gap-2 md:gap-3 justify-center items-center">
         @foreach ($galleries as $gallery)
         <img id={{$gallery->id}} class=" imageList  aspect-[1/1] w-[64px] md:w-[164px] h-[64px] md:h-[164px] sm:w-[100px] sm:h-[100px] rounded-md hover:-translate-y-1 hover:scale-500 cursor-pointer" src={{ $gallery->image_url }} alt="{{ $gallery->content }}">
         @endforeach
