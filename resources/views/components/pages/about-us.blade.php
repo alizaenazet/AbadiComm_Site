@@ -41,9 +41,9 @@
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our clients</h1>
     <div class="py-[25px] w-screen bg-primary flex flex-center justify-center">
         <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 ">
-            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_surabaya.svg)"></div>
+            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/logo_porpov.svg)"></div>
             <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_bali_logo.svg)"></div> 
-            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/ace_logo.svg)"></div> 
+            <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_surabaya.svg)"></div>
             <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/ancol_logo.svg)"></div> 
             <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/ibid_logo.svg)"></div> 
             <div class="w-16 h-16 md:w-32 md:h-32 bg-cover rounded-sm" style="background-image: url(/images/kemendag_logo.svg)"></div> 
