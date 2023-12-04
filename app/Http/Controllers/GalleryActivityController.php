@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GalleryActivity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -36,7 +37,7 @@ class GalleryActivityController extends Controller
             'image_url'=> $ImageUrl,
             'content' => $request['description']
         ]);
-
+        Cache::forget('galleries');
         return redirect('/dashboard/galleries/');
     }
 
@@ -44,6 +45,7 @@ class GalleryActivityController extends Controller
         $imagePath = str_replace("/storage/",'',$galleryActivity->image_url);
         Storage::disk('public')->delete($imagePath);
         $galleryActivity->delete();
+        Cache::forget('galleries');
         return redirect('/dashboard/galleries/');
     }
 
@@ -81,7 +83,7 @@ class GalleryActivityController extends Controller
             }
         }
         $galleryActivity->save();
-        
+        Cache::forget('galleries');
         return redirect('/dashboard/galleries');
     }
 }

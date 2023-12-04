@@ -14,6 +14,7 @@ use App\Models\TeamMember;
 use App\Models\Division;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,9 @@ Route::get('/', function (){
 });
 
 Route::get('/gallery',function () {
-    $galleries = GalleryActivity::all();
+    $galleries = Cache::rememberForever("galleries", function () {
+        return GalleryActivity::all()->sortByDesc('updated_at');
+    });
    return view('components.pages.gallery')
                 ->with('galleries', $galleries);
 });
