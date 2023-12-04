@@ -29,6 +29,7 @@
 
 <div>
     <h1 class="w-full text-h1-lg font-serif font-bold text-center">Our clients</h1>
+<<<<<<< Updated upstream
     <div"  class="py-[31px] w-screen bg-primary flex flex-center justify-center">
             <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 "> 
                 <img src="https://random.imagecdn.app/300/300" alt="" class= "w-32 h-32 rounded-md">
@@ -42,6 +43,33 @@
                         <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
                         <img src="https://random.imagecdn.app/300/300" alt="" class="w-32 h-32 rounded-md">
             </div>        
+=======
+    <div class="py-[25px] w-screen bg-primary flex flex-center justify-center">
+        <div class="w-[80%] flex flex-center justify-center flex-row flex-wrap gap-x-8 gap-y-3 ">
+            <div class="image-container flex items-center">
+            <div class="w-20 h-24 md:w-32 md:h-36 bg-cover rounded-sm" style="background-image: url(/images/logo_porpov.svg)"></div>
+            </div>
+            <div class="image-container flex items-center">
+            <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_bali_logo.svg)"></div> 
+            </div>
+            <div class="image-container flex items-center">
+            <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_surabaya.svg)"></div>
+            </div>
+            <div class="image-container flex items-center">
+            <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/ancol_logo.svg)"></div> 
+            </div>
+            <div class="image-container flex items-center">
+            <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/ibid_logo.svg)"></div> 
+            </div>
+            <div class="image-container flex items-center">
+            <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/kemendag_logo.svg)"></div> 
+            </div>
+            <div class="image-container flex items-center">
+            <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/phillips_logo.svg)"></div> 
+            </div>
+            
+        </div>
+>>>>>>> Stashed changes
     </div>
 </div>
 
