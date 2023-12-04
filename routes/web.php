@@ -45,7 +45,9 @@ Route::get('/partner', function () {
 });
 
 Route::get('/team-member', function () {
-    $members = TeamMember::all();
+    $members = Cache::rememberForever('teamMembers', function () {
+        return TeamMember::all();
+    });
     return view('components.pages.team-member')
                     ->with('members', $members);
 });
