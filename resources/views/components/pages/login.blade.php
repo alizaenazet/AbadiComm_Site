@@ -12,7 +12,7 @@ gap="15px" title="admin login">
         </div>
         <div>
             <label for="password-input" class="block mb-1 text-sm md:text-medium-lg font-medium text-white dark:text-white text-normal-sm">password</label>
-            <input type="text" name="password" class=" text-input-sm md:text-input-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <input type="password" name="password" class=" text-input-sm md:text-input-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         <a href="/forget-password" class="w-full ">
         <p class="text-input-sm md:text-normal-lg text-blue-800 ">lupa password</p>
