@@ -61,7 +61,7 @@ gap="18px" title="admin login">
                                 <h3 class="w-full text-center text-h3-sm font-medium md:text-h3-lg">Divisions</h3>
                                 <form action="/dashboard/categories/create" method="POST" class="flex flex-row gap-1 w-full h-fit justify-end items-end">
                                     @csrf
-                                    <div class="flex flex-col gap-1 items-start ">
+                                    <div class="flex flex-col gap-1 items-start w-full ">
                                         <label for="category-name-input" class="block  text-sm font-medium text-gray-900 dark:text-white">Kategori baru</label>
                                         <input type="text" id="category-name-input" name="categoryName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     </div>
