@@ -17,7 +17,7 @@ class PortfolioImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'image_url' => 'https://random.imagecdn.app/300/300'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName(),
+            'image_url' => 'https://source.unsplash.com/800x800/?event'.fake()->hexColor(). '/cf4040?text='. fake()->firstName()."+".fake()->lastName()
         ];
     }
 }

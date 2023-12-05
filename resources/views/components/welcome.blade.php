@@ -1,13 +1,11 @@
-<<<<<<< Updated upstream
+
 <div class="w-full h-fit flex justify-center items-center flex-col gap-y-10">
     <h1 class="w-[85%] text-center text-black text-headline-lg font-semibold font-serif">Make the most amazing event in the world</h1>
     <h2 class="text-black text-h1-lg">Event organizer</h2>
     <img class="w-[934px] h-[613px] rounded-lg" src="https://random.imagecdn.app/934/613" />
-=======
 <div  class=" w-full h-fit flex justify-center items-center flex-col gap-y-5 md:gap-y-10 mt-16">
     <h1 class="w-[85%] text-center text-black text-headline-sm md:text-headline-lg font-semibold font-serif">Kepuasan adalah kebanggaan bagi kami </h1>
     <h2 class="text-black text-h1-sm  md:text-h1-lg">Event organizer</h2>
-    
 
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
@@ -35,7 +33,6 @@
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-
     </div>
     <!-- Slider controls -->
     <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
@@ -55,5 +52,4 @@
         </span>
     </button>
 </div>
->>>>>>> Stashed changes
 </div>

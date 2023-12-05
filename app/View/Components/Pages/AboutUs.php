@@ -5,6 +5,10 @@ namespace App\View\Components\Pages;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Cache;
+use App\Models\TeamMember;
+
+
 
 class AboutUs extends Component
 {
@@ -21,6 +25,9 @@ class AboutUs extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.pages.about-us');
+        $members = Cache::rememberForever('teamMembers', function () {
+            return TeamMember::all();
+        });
+        return view('components.pages.about-us')->with('teamMembers',$members->take(6)->pluck('image_url')->all());
     }
 }
