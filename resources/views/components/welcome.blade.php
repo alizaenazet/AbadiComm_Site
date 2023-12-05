@@ -1,12 +1,6 @@
-
-<div class="w-full h-fit flex justify-center items-center flex-col gap-y-10">
-    <h1 class="w-[85%] text-center text-black text-headline-lg font-semibold font-serif">Make the most amazing event in the world</h1>
-    <h2 class="text-black text-h1-lg">Event organizer</h2>
-    <img class="w-[934px] h-[613px] rounded-lg" src="https://random.imagecdn.app/934/613" />
 <div  class=" w-full h-fit flex justify-center items-center flex-col gap-y-5 md:gap-y-10 mt-16">
     <h1 class="w-[85%] text-center text-black text-headline-sm md:text-headline-lg font-semibold font-serif">Kepuasan adalah kebanggaan bagi kami </h1>
     <h2 class="text-black text-h1-sm  md:text-h1-lg">Event organizer</h2>
-
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-fit md:aspect-[3/2]">
