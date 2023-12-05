@@ -8,7 +8,7 @@ gap="18px" title="admin login">
         <a href="/dashboard" class="text-white h-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[9px] py-[6px]  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" >Kembali</a>
         <button id="submit-button" form="settings-form" type="submit" class="text-white h-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-input-sm md:text-input-lg px-[9px] py-[6px]  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" disabled>Simpan</button>
     </div>
-    <form class="max-w-sm mx-auto" action="/dashboard/settings" method="POST" id="settings-form">
+    <form class="max-w-sm md:w-full mx-auto" action="/dashboard/settings" method="POST" id="settings-form">
         @csrf
         @method('PUT')
         <input type="hidden" id="changed-field" name="changedFields" value="">
