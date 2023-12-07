@@ -77,13 +77,15 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
+            unlink public_html;
             cd laravel-app;
             composer install;
             php artisan key:generate;
             php artisan migrate;
             php artisan db:seed;
             php artisan storage:link;
-            ln -s public public_html
+            cd ../;
+            ln -s laravel-app/public public_html
     
       
                 
