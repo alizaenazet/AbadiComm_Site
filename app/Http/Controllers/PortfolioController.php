@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
+
 
 
 class PortfolioController extends Controller
@@ -50,7 +52,9 @@ class PortfolioController extends Controller
             }
 
             
-        $years = Portfolio::select(DB::raw('YEAR(`date`) as year'))->get();
+        $years = Cache::rememberForever("years", function (){
+            return Portfolio::select(DB::raw('YEAR(`date`) as year'))->groupBy('year')->get();
+        });
         return view('components.pages.list-portfolio')
         ->with('portfolios', $portfolios)
         ->with('years', $years)
@@ -61,9 +65,15 @@ class PortfolioController extends Controller
     }
 
     public function showPortfolioListPage(){
-        $portfolios = Portfolio::all()->sortByDesc('updated_at');
-        $categories = Category::all();
-        $years = Portfolio::select(DB::raw('YEAR(`date`) as year'))->get();;
+        $portfolios = Cache::rememberForever("portfolios", function (){
+            return Portfolio::all()->sortByDesc('updated_at');
+        });
+        $categories = Cache::rememberForever("categories", function (){
+            return Category::all();
+        });
+        $years = Cache::rememberForever("years", function (){
+            return Portfolio::select(DB::raw('YEAR(`date`) as year'))->groupBy('year')->get();
+        });
         return view('components.pages.list-portfolio')
                         ->with('portfolios', $portfolios)
                         ->with('years', $years)
@@ -143,6 +153,8 @@ class PortfolioController extends Controller
         }
 
         if ($portfolio->save()) {
+            Cache::forget('portfolios');
+            Cache::forget('years');
             return redirect('/dashboard/portfolios');
         }
         return back()->with('status','gagal membuat portfolio');
@@ -232,6 +244,8 @@ class PortfolioController extends Controller
         }
 
         if ($portfolio->save()) {
+            Cache::forget('portfolios');
+            Cache::forget('years');
             return redirect('/dashboard/portfolios')->with('portfolioStatus','berhasil update portfolio');
         }
         return back()->with('status','gagal update portfolio');
@@ -249,7 +263,8 @@ class PortfolioController extends Controller
 
         $dirPath = str_replace("/storage/",'','portfolio_images/'.$portfolio->id);
         Storage::deleteDirectory($dirPath);
-
+        Cache::forget('portfolios');
+        Cache::forget('years');
         return  back()->with('portfolioStatus', 'portfolio berhasil dihapus');
     }
 

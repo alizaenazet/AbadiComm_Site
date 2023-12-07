@@ -115,7 +115,7 @@ gap="18px" title="admin login">
         <h3 class=" font-medium text-medium-sm md:text-medium-lg">Penyelenggara</h3>
 
         <div class="w-full h-fit flex flex-row gap-2 items-end">
-            <div class="relative w-fit">
+            <div class="relative w-full md:w-[300px]">
                 <input id="add-promoter-input"  class="block w-full px-[12px] py-[15px]  text-input-sm md:text-input-lg text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="penyelenggara..." required>
                 <button id="add-promoter-button" class=" text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-normal-sm md:text-normal-lg rounded-lg text-sm px-[8px] py-[5px] dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
             </div>

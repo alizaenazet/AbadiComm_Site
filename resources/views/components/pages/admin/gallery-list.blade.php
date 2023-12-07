@@ -12,7 +12,7 @@ gap="18px" title="admin login">
     
     <div class="w-full h-full flex flex-row flex-wrap gap-3 justify-center">
         @foreach ($galleries as $gallery)
-        <div class="flex w-full h-[125px] flex-row md:flex-col items-center md:items-center gap-2 md:w-[256px] md:h-[297px] px-[10px] py-[10px] bg-primary border-gray-400 rounded-md">
+        <div class="flex w-full h-[125px] flex-row md:flex-col items-center  justify-center md:items-center gap-2 md:w-[256px] md:h-[297px] px-[10px] py-[10px] bg-primary border-gray-400 rounded-md">
             <img class=" w-full md:w-[152px] h-full aspect-[1/1] rounded-md " src={{$gallery->image_url}} alt="">
             <div class=" w-full h-full  flex flex-col gap-3 items-center " >
                 <p class=" w-fit h-full md:h-[72px] text-white text-input-sm md:text-input-lg text-ellipsis overflow-hidden" >{{$gallery->content}}</p>

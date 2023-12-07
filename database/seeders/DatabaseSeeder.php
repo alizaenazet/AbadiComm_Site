@@ -12,6 +12,7 @@ use App\Models\Portfolio;
 use App\Models\PortfolioImage;
 use App\Models\TeamMember;
 use App\Models\PortfolioPromoter;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,14 +22,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::firstOr(function () {
+            User::factory()->create([
+                "id" => 1,
+                'name' => 'admin',
+                'password' => bcrypt('admin123'),
+                'email' => 'contact@abadicomm.id',
+            ]);
+        });
+        
         // \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
-            "id" => 1,
-            'name' => 'admin',
-            'password' => bcrypt('admin123'),
-            'email' => 'admin@email.com',
-        ]);
 
         // Division::factory()->has(
         //     TeamMember::factory()->count(3),

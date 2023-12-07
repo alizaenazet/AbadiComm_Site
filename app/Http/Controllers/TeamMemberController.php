@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 
 class TeamMemberController extends Controller
 {
@@ -42,6 +43,7 @@ class TeamMemberController extends Controller
             'qualification' => $request['qualification']
         ]);
         if (is_object($newTeamMember) ) {
+            Cache::forget('teamMembers');
             return redirect('/dashboard/team-members')->with("teamMemberStatus","member berhasil ditambahkan"); 
         }
         return redirect('/dashboard/team-members')->with("teamMemberStatus","member gagal ditambahkan"); 
@@ -51,6 +53,7 @@ class TeamMemberController extends Controller
         $imagePath = str_replace("/storage/",'',$teamMember->image_url);
         Storage::disk('public')->delete($imagePath);
         $teamMember->delete();
+        Cache::forget('teamMembers');
         return redirect('/dashboard/team-members')->with("teamMemberStatus","member berhasil dihapus"); 
     }
 
@@ -109,6 +112,7 @@ class TeamMemberController extends Controller
             }
         }
         $teamMember->save();
+        Cache::forget('teamMembers');
         return redirect('/dashboard/team-members')->with("teamMemberStatus","member berhasil diperbarui"); 
     }
 }
