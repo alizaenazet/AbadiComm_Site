@@ -28,6 +28,7 @@ class AboutUs extends Component
         $members = Cache::rememberForever('teamMembers', function () {
             return TeamMember::all();
         });
-        return view('components.pages.about-us')->with('teamMembers',$members->take(6)->pluck('image_url')->all());
+        return view('components.pages.about-us')
+        ->with('teamMembers',$members->isEmpty() ? [] : $members->take(6)->pluck('image_url')->all());
     }
 }

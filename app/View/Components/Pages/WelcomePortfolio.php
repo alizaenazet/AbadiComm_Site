@@ -28,6 +28,6 @@ class WelcomePortfolio extends Component
             return Portfolio::all()->sortByDesc('updated_at');
         });
         return view('components.pages.welcome-portfolio')
-        ->with('portfolios',$portfolios->take(4)->all());
+        ->with('portfolios', $portfolios->isEmpty() ? [] : $portfolios->take(4)->all());
     }
 }
