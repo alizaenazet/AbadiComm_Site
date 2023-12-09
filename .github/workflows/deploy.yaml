@@ -47,7 +47,7 @@ jobs:
         uses: Burnett01/rsync-deployments@6.0.0
         with:
           # The switches
-          switches: -avzr --delete --exclude=".git" --exclude=".github"
+          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="storage"
           # The local path of dir/file will added
           path: /
           # The remote path
@@ -77,13 +77,16 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
+            unlink public_html;
+            ls;
             cd laravel-app;
             composer install;
             php artisan key:generate;
             php artisan migrate;
             php artisan db:seed;
             php artisan storage:link;
-            ln -s public public_html
+            cd ../;
+            ln -s laravel-app/public public_html
     
       
                 
