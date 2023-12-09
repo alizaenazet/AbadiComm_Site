@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\GalleryActivity;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/tes/{key}', function (string $key) {
-    return Cache::get($key,"value of ". $key . "is noting");
+    $galleries = Cache::rememberForever("galleries", function () {
+        return GalleryActivity::all()->sortByDesc('updated_at');
+    });
+    return [$galleries,gettype($galleries)];
+    // return Cache::get($key,"value of ". $key . "is noting");
 });
