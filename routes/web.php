@@ -28,8 +28,7 @@ use Illuminate\Support\Facades\Cache;
 */
 
 Route::get('/', function (){
-    $members = TeamMember::all();
-    return view('welcome')->with('members', $members);
+    return view('welcome');
 });
 
 Route::get('/gallery',function () {
