@@ -29,6 +29,6 @@ class AboutUs extends Component
             return TeamMember::all();
         });
         return view('components.pages.about-us')
-        ->with('teamMembers',$members->isEmpty() ? [] : $members->take(6)->pluck('image_url')->all());
+        ->with('teamMembers',is_string($members) ?  array_slice(json_decode($members),0,6) : $members->take(6)->pluck('image_url')->all());
     }
 }
