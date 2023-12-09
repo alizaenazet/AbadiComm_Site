@@ -78,6 +78,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             unlink public_html;
+            ls;
             cd laravel-app;
             composer install;
             php artisan key:generate;
