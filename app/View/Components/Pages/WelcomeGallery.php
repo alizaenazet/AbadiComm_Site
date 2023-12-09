@@ -27,6 +27,6 @@ class WelcomeGallery extends Component
             return GalleryActivity::all()->sortByDesc('updated_at');
         });
         return view('components.pages.welcome-gallery')
-        ->with('galleries',$galleries->isEmpty() ? [] :  $galleries->take(15)->all());
+        ->with('galleries', is_string($galleries) ?  array_slice(json_decode($galleries),0,15) : $galleries->take(15)->all());
     }
 }
