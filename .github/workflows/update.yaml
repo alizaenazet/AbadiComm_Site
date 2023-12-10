@@ -32,7 +32,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             ls;
-            cd laravel-app;
+            cd AbadiComm_Site;
             git pull origin main
             composer install;
             composer update;
