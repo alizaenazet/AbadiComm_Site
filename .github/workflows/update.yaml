@@ -16,7 +16,7 @@ on:
 jobs:
 
 
-  upload:
+  update:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -33,7 +33,7 @@ jobs:
           script: |
             ls;
             cd AbadiComm_Site;
-            git pull origin main
+            git pull origin main --force --verbose
             composer install;
             composer update;
             php artisan migrate;
