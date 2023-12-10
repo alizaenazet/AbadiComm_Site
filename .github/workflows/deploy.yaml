@@ -71,7 +71,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             ls;
-            cd laravel-app;
+            cd AbadiComm_Site;
             composer install;
             php artisan key:generate;
             php artisan migrate;
