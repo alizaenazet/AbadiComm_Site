@@ -39,9 +39,9 @@ Route::get('/', function (){
     });
     
     return view('welcome')
-    ->with('portfolios', is_string($portfolios) ?  array_slice(json_decode($portfolios),0,4) : $portfolios->take(4)->all())
-    ->with('galleries', is_string($galleries) ?  array_slice(json_decode($galleries),0,15) : $galleries->take(15)->all())
-    ->with('teamMembers',is_string($members) ?  array_slice(json_decode($members),0,6) : $members->take(6)->pluck('image_url')->all());
+    ->with('portfolios',  $portfolios->take(4)->all())
+    ->with('galleries',   $galleries->take(15)->all())
+    ->with('teamMembers', $members->take(6)->pluck('image_url')->all());
 });
 
 Route::get('/gallery',function () {
