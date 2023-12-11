@@ -58,7 +58,7 @@ gap="18px" title="admin login">
                         </button>
                         <div class="p-[15px] md:p-5 text-center">
                             <div class="w-full h-fit flex flex-col items-center justify-center flex-wrap gap-2">
-                                <h3 class="w-full text-center text-h3-sm font-medium md:text-h3-lg">Divisions</h3>
+                                <h3 class="w-full text-center text-h3-sm font-medium md:text-h3-lg">Kategori</h3>
                                 <form action="/dashboard/categories/create" method="POST" class="flex flex-row gap-1 w-full h-fit justify-end items-end">
                                     @csrf
                                     <div class="flex flex-col gap-1 items-start w-full ">

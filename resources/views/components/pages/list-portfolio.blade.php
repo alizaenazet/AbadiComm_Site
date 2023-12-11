@@ -1,4 +1,4 @@
-<x-app-layout gap="45px" title="ListPortfolio">
+<x-app-layout gap="45px" title="Portfolio">
     <x-slot:navbar>
         <x-navbar />
   </x-slot>

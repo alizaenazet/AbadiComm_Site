@@ -1,5 +1,5 @@
 <x-app-layout
-  gap="0px" title="Navigation bar">
+  gap="0px" title="AbadiComm">
   <x-slot:navbar>
         <x-navbar />
   </x-slot>
@@ -198,7 +198,7 @@
   <div class="flex flex-warp justify-center items-center">
       <form action="">
           <a href="/gallery" style="padding: 2px 6px"
-              class="border-2 flex flex-row items-center gap-1 w-fit  px-8 border-blue-500 font-medium lg:text-h3-lg rounded-lg text-center ">
+              class="border-2 flex flex-row items-center gap-1 w-fit  px-8 border-primary text-primary font-medium lg:text-h3-lg rounded-lg text-center ">
               Show More
           </a>
       </form>
@@ -247,7 +247,7 @@
       </div>
   
       <a href="/list-portfolio"  style="padding: 2px 6px"
-                  class=" border-2 flex flex-row items-center justify-center gap-1 w-[50%] md:w-[30%] lg:w-[15%]  px-8 border-primary font-medium rounded-lg text-center text-primary font-sans text-h3-sm md:text-h3-lg hover:bg-accent">
+                  class=" border-2 flex flex-row items-center justify-center gap-1 w-[50%] md:w-fit lg:max-w-fit px-8 border-primary font-medium rounded-lg text-center text-primary font-sans text-h3-sm md:text-h3-lg hover:bg-accent">
                   Show More
       </a>
   </div>
