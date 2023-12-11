@@ -92,7 +92,7 @@ gap="18px" title="admin login">
             <p class="text-input-sm md:text-input-lg text-gray-800">{{$message}}</p>
         @enderror
     </div>
-    <div class="relative z-0 w-full mb-6 group md:w-[60%]">
+    <div class="relative z-0 w-full md:w-[23%] mb-6 group">
         <input type="date"  name="time" id="time" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  value="{{$portfolio->date}}"/>
         <label for="time" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Waktu</label>
         @error('time')
@@ -103,7 +103,7 @@ gap="18px" title="admin login">
     <div class="w-full h-fit mb-6 flex flex-col items-start justify-start gap-3">
         <h3 class=" font-medium text-medium-sm md:text-medium-lg">Kategori</h3>
         <div class="w-full h-fit  " >
-            <select id="category-options" class="text-input-sm md:text-input-lg rounded-md">
+            <select id="category-options" class="text-input-sm md:text-input-lg rounded-md w-[75%] lg:w-[50%] px-[12px] py-[8px]">
                 <option class="text-input-sm md:text-input-lg" selected disabled>pilih kategori</option>
                 @foreach ($categories as $category)
                 <option class="text-input-sm md:text-input-lg" value="{{$category->id}}">{{$category->name}}</option>
@@ -112,7 +112,7 @@ gap="18px" title="admin login">
             @error('categories')
             <p class="text-input-sm md:text-input-lg text-gray-800">{{$message}}</p>
             @enderror
-            <button id="reset-category-button" class="w-fit mt-2 md:mt-0 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm  sm:w-auto px-[10px] py-[6px] text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Reset</button>
+            <button id="reset-category-button" class="w-fit mt-2 md:mt-0 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm  sm:w-auto px-[10px] py-[10px] text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Reset</button>
         </div>
 
         <div id="category-list" class="w-full md:w-[60%] h-fit flex flex-col gap-2 bg-gray-200 px-[8px] py-[5px] rounded-md">
@@ -128,14 +128,14 @@ gap="18px" title="admin login">
         <h3 class=" font-medium text-medium-sm md:text-medium-lg">Penyelenggara</h3>
 
         <div class="w-full h-fit flex flex-row gap-2 items-end">
-            <div class="relative w-fit">
-                <input id="add-promoter-input"  class="block w-full px-[12px] py-[15px]  text-input-sm md:text-input-lg text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="penyelenggara..." >
-                <button id="add-promoter-button" class=" text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-normal-sm md:text-normal-lg rounded-lg text-sm px-[8px] py-[5px] dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+            <div class="relative w-[80%] lg:w-[50%]">
+                <input id="add-promoter-input"  class="block w-full px-[12px] py-[12px]  text-input-sm md:text-input-fit text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="penyelenggara..." >
+                <button id="add-promoter-button" class=" text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-normal-sm md:text-normal-lg rounded-lg text-sm px-[8px] py-[2px] dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
             </div>
             @error('promoters')
             <p class="text-input-sm md:text-input-lg text-gray-800">{{$message}}</p>
             @enderror
-            <button id="reset-portfolio-button" class="w-fit h-fit mt-2 md:mt-0 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm  sm:w-auto px-[10px] py-[6px] text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Reset</button>
+            <button id="reset-portfolio-button" class="w-fit h-fit mt-2 md:mt-0 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm  sm:w-auto px-[10px] py-[11px] text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Reset</button>
         </div>
 
 
