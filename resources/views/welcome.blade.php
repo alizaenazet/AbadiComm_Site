@@ -60,12 +60,12 @@
 <div class="flex flex-col justify-center items-center gap-12 mt-10 md:mt-16">
   <div style="padding-left:inherit; padding-right:inherit" class="flex justify-center">
       <p class="text-h3-sm md:text-h3-lg font-sans max-w-[80%]">
-          Suksesnya suatu event berdampak banyak hal terhadap kemajuan  perusahaan seperti mendapat prospek, meningkatkan penjualan dan  sebagainya. 
+          Suksesnya suatu event berdampak banyak hal terhadap kemajuan  perusahaan seperti mendapat prospek, meningkatkan penjualan dan  sebagainya.
           Untuk itu ABADI COMMUNICATIONS, hadir menawarkan jasa penanganan event perusahaan sampai kepada hal detailnya. Tim kami akan merinci setiap kebutuhan event perusahaan Anda agar sesuai dengan karakter yang perusahaan Anda miliki.
-          Saat Anda mempercayakan event tersebut kepada kami, Anda bisa fokus pada bisnis perusahaan harian. Kami akan membantu Anda menyusun, merancang, mempersiapkan serta melaksanakan event  perusahaan Anda. 
+          Saat Anda mempercayakan event tersebut kepada kami, Anda bisa fokus pada bisnis perusahaan harian. Kami akan membantu Anda menyusun, merancang, mempersiapkan serta melaksanakan event  perusahaan Anda.
       </p>
   </div>
-  
+
 
   <div class=" w-full flex flex-row flex-wrap justify-center gap-4">
       {{-- style="background: linear-gradient(148deg, #0081AF 41.98%, rgba(221, 28, 26, 0.00) 120.72%, rgba(221, 28, 26, 0.00) 120.72%); " --}}
@@ -104,24 +104,24 @@
           <div class="w-20 h-24 md:w-32 md:h-36 bg-cover rounded-sm" style="background-image: url(/images/logo_porpov.svg)"></div>
           </div>
           <div class="image-container flex items-center">
-          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_bali_logo.svg)"></div> 
+          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/bkkbn_bali_logo.svg)"></div>
           </div>
           <div class="image-container flex items-center">
           <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/logo_pemkot_surabaya.svg)"></div>
           </div>
           <div class="image-container flex items-center">
-          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/ancol_logo.svg)"></div> 
+          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/ancol_logo.svg)"></div>
           </div>
           <div class="image-container flex items-center">
-          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/ibid_logo.svg)"></div> 
+          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/ibid_logo.svg)"></div>
           </div>
           <div class="image-container flex items-center">
-          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/kemendag_logo.svg)"></div> 
+          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/kemendag_logo.svg)"></div>
           </div>
           <div class="image-container flex items-center">
-          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/phillips_logo.svg)"></div> 
+          <div class="w-16 h-16 md:w-24 md:h-24 bg-cover rounded-sm" style="background-image: url(/images/phillips_logo.svg)"></div>
           </div>
-          
+
       </div>
   </div>
 </div>
@@ -159,7 +159,7 @@
               Layanan ini meliputi penyusunan konsep event, mulai dari tema, tujuan, target audience, hingga timeline pelaksanaan. Event organizer akan bekerja sama dengan klien untuk memahami kebutuhan dan keinginan klien, kemudian mengembangkan konsep event yang sesuai.
           </p>
       </div>
-     
+
       <div
           class=" flex-col max-w-[330px]  md:w-[22rem] flex justify-start items-center px-[13px] pt-[20px] pb-[58px]   p-6 bg-white  rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 bg-gradient-to-br from-primary from-45% to-secondary ">
               <svg class="justify-center items-center fill-accent w-14 md:w-20 lg:w-24 h-fit" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M160-200h80v-320h480v320h80v-426L480-754 160-626v426Zm-80 80v-560l400-160 400 160v560H640v-320H320v320H80Zm280 0v-80h80v80h-80Zm80-120v-80h80v80h-80Zm80 120v-80h80v80h-80ZM240-520h480-480Z"/></svg>
@@ -192,7 +192,7 @@
           @foreach ($galleries as $gallery)
           <img src={{$gallery->image_url}} alt="" class= "aspect-[1/1] w-16 md:w-32 h-16 md:h-32 rounded-md">
           @endforeach
-          
+
       </div>
   </div>
   <div class="flex flex-warp justify-center items-center">
@@ -218,8 +218,16 @@
 
           <div class="flex w-full flex-col gap-1">
            <div class="w-full h-fit">
-               <div class="w-full aspect-[3/2] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div>
-               <p class="text-black text-h3-lg font-bold font-serif">{{ $portfolio->title }}</p>
+                <div class="w-full aspect-[3/2] rounded-lg"
+                    style="
+                        background-image: url({{$portfolio->portfolioImage[0]->image_url}});
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-color: rgb(230, 230, 230);
+                    ">
+                </div>
+                 <p class="text-black text-h3-lg font-bold font-serif">{{ $portfolio->title }}</p>
            </div>
 
            <div>
@@ -245,7 +253,7 @@
        </div>
       @endforeach
       </div>
-  
+
       <a href="/list-portfolio"  style="padding: 2px 6px"
                   class=" border-2 flex flex-row items-center justify-center gap-1 w-[50%] md:w-fit lg:max-w-fit px-8 border-primary font-medium rounded-lg text-center text-primary font-sans text-h3-sm md:text-h3-lg hover:bg-accent">
                   Show More
@@ -263,7 +271,7 @@
       <button data-modal-target="contact-modal" data-modal-toggle="contact-modal" class="px-[20px] py-[10px] w-[181px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button">
           Contact us
         </button>
-      
+
   </div>
 </div>
 {{-- Welcome Contact Section --}}

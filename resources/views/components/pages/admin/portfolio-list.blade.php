@@ -1,8 +1,8 @@
-<x-app-layout 
+<x-app-layout
 gap="18px" title="admin login">
     <x-slot:navbar>
-        <x-dashboard-navbar />    
-    </x-slot> 
+        <x-dashboard-navbar />
+    </x-slot>
 
 
     <div class="flex flex-col justify-center gap-2 md:gap-3 items-start w-full h-fit" >
@@ -20,7 +20,7 @@ gap="18px" title="admin login">
                     </div>
                 </div>
         @endif
-        
+
         {{-- alert dialog for team member status --}}
         @if (session('portfolioStatus'))
                 <div id="portfolio-status-alert" class="alert alert-success">
@@ -40,13 +40,13 @@ gap="18px" title="admin login">
         <h2 class="text-h1-sm md:text-h2-lg">List portfolio </h2>
         <div class="flex flex-row w-full flex-wrap gap-2 items-start">
             <a href='/dashboard/portfolios/create' class="w-max">
-                <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-normal-sm md:text-input-lg px-[10px] md:px-[10px] py-[5px] md:py-[5px] text-center  dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Tambah Portfolio</button> 
+                <button type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-normal-sm md:text-input-lg px-[10px] md:px-[10px] py-[5px] md:py-[5px] text-center  dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Tambah Portfolio</button>
             </a>
-            
+
         <button data-modal-target="add-devision-modal" data-modal-toggle="add-devision-modal" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-normal-sm md:text-input-lg px-[10px] md:px-[10px] py-[5px] md:py-[5px] text-center  dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type="button">
             Tambah Kategori
             </button>
-            
+
             <div id="add-devision-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative p-4 w-[90%] max-w-md max-h-full">
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -97,7 +97,7 @@ gap="18px" title="admin login">
                     </div>
                 </div>
             </div>
-            
+
                 </div>
     </div>
 
@@ -108,7 +108,15 @@ gap="18px" title="admin login">
 
            <div class="flex w-full flex-col gap-1">
             <div class="w-full h-fit">
-                <div class="w-full aspect-[3/2] rounded-lg bg-contain" style="background-image: url({{$portfolio->portfolioImage[0]->image_url}})"></div>
+                <div class="w-full aspect-[3/2] rounded-lg"
+                    style="
+                        background-image: url({{$portfolio->portfolioImage[0]->image_url}});
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-color: rgb(230, 230, 230);
+                    ">
+                </div>
                 <p class="text-black text-h3-lg font-bold font-serif">{{ $portfolio->title }}</p>
             </div>
 
@@ -141,7 +149,7 @@ gap="18px" title="admin login">
         </div>
 
         </div>
-        @endforeach                    
+        @endforeach
                 @else
             <h1>Tidak ada portfolio</h1>
         @endif

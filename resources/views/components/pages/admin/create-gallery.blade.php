@@ -1,13 +1,15 @@
-<x-app-layout 
+<x-app-layout
 gap="18px" title="admin login">
     <x-slot:navbar>
-        <x-dashboard-navbar />    
-    </x-slot> 
+        <x-dashboard-navbar />
+    </x-slot>
     <h1 class="text-h1-sm font-medium ">Upload gallery</h1>
     <form class="w-full h-fit flex flex-col items-center gap-3 justify-center" action="/dashboard/galleries/create" method="POST" enctype="multipart/form-data">
         @csrf
     <div  class="w-full md:w-[348px] h-fit ">
-            <img id="image-preview" class="w-full h-fit aspect-square drop-shadow-md rounded-sm" src="" alt="" hidden>
+            <div id="image-preview-wrapper" class="relative w-full aspect-square drop-shadow-md rounded-sm overflow-hidden bg-gray-100 hidden">
+                <img id="image-preview" src="" alt="" class="absolute inset-0 w-full h-full object-contain rounded-sm" />
+            </div>
             <label id="upload-area" for="dropzone-file" class="flex flex-col items-center justify-center w-full h-full aspect-[1/1] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center pt-[20px] pb-[24px] gap-2">
                     <svg class="w-8 h-8  text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -39,29 +41,30 @@ gap="18px" title="admin login">
 
     <script>
         $(document).ready(function () {
-            $('#dropzone-file').change(function (e) { 
+            $('#dropzone-file').change(function (e) {
                 e.preventDefault();
                 const imageFile = this.files[0];
-                console.log('triggered');
-                console.log(imageFile);
+                if (!imageFile) return;
+
                 $('#upload-area').hide();
-                $('#image-preview').addClass("aspect-[1/1] ");
-                let reader = new FileReader();
-                reader.onload = function(event){
-                    $('#image-preview').attr('src', event.target.result);
-                }
-                reader.readAsDataURL(imageFile);
-                $('#image-preview').show();
+                $('#image-preview-wrapper').show();
                 $('#reset-image-preview').show();
+
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $('#image-preview').attr('src', event.target.result);
+                };
+                reader.readAsDataURL(imageFile);
             });
 
-            $('#reset-image-preview').click(function (e) { 
+            $('#reset-image-preview').click(function (e) {
                 e.preventDefault();
                 $('#upload-area').show();
-                $('#image-preview').hide();
+                $('#image-preview-wrapper').hide();
                 $('#reset-image-preview').hide();
-                $('#image-preview').attr('src','');
+                $('#image-preview').attr('src', '');
             });
         });
     </script>
+
 </x-app-layout>

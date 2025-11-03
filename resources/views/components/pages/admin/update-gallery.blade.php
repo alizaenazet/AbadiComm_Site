@@ -1,15 +1,20 @@
-<x-app-layout 
+<x-app-layout
 gap="18px" title="admin login">
     <x-slot:navbar>
-        <x-dashboard-navbar />    
-    </x-slot> 
+        <x-dashboard-navbar />
+    </x-slot>
     <h1 class="text-h1-sm font-medium ">Upload gallery</h1>
     <form class="w-full h-fit flex flex-col items-center gap-3 justify-center" action="/dashboard/galleries/{{$gallery->id}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <input type="hidden" id="updated" name="updated" value="">
-    <div  class="w-full md:w-[348px] h-fit ">
-            <img id="image-preview" class="w-full h-fit aspect-square drop-shadow-md rounded-sm" src={{$gallery->image_url}} alt="">
+        <div  class="w-full md:w-[348px] h-fit ">
+            <div class="relative w-full aspect-square drop-shadow-md rounded-sm overflow-hidden bg-gray-100">
+                <img id="image-preview"
+                    src="{{$gallery->image_url}}"
+                    alt=""
+                    class="absolute inset-0 w-full h-full object-contain rounded-sm" />
+            </div>
             <label id="upload-area" for="dropzone-file" class="flex flex-col items-center justify-center w-full h-full aspect-[1/1] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 hidden">
                 <div class="flex flex-col items-center justify-center pt-[20px] pb-[24px] gap-2">
                     <svg class="w-8 h-8  text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -47,7 +52,7 @@ gap="18px" title="admin login">
             var defaultDescrition = $('#description').val();
             var updated = [];
 
-            $('#dropzone-file').change(function (e) { 
+            $('#dropzone-file').change(function (e) {
                 e.preventDefault();
                 const imageFile = this.files[0];
                 $('#upload-area').hide();
@@ -62,10 +67,10 @@ gap="18px" title="admin login">
                 if (!updated.includes('fileImage')) {
                     updated.push('fileImage')
                     $('#updated').val(updated.toString());
-                }  
+                }
             });
 
-            $('#description').change(function (e) { 
+            $('#description').change(function (e) {
                 e.preventDefault();
                 if ($('#description').val() != defaultDescrition) {
                     if (!updated.includes('description')) {
@@ -81,7 +86,7 @@ gap="18px" title="admin login">
                 }
             });
 
-            $('#reset-image-preview').click(function (e) { 
+            $('#reset-image-preview').click(function (e) {
                 e.preventDefault();
                 $('#upload-area').show();
                 $('#image-preview').hide();
