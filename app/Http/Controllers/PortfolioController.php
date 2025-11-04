@@ -13,11 +13,20 @@ use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
-
-
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class PortfolioController extends Controller
 {
+    private function getImageManager()
+    {
+        try {
+            return new ImageManager(new \Intervention\Image\Drivers\Imagick\Driver());
+        } catch (\Exception $e) {
+            return new ImageManager(new Driver());
+        }
+    }
+
     public function filter(Request $req)  {
 
         if (empty($req['categoriesFilter']) && empty($req['yearsFilter']) ) {
@@ -51,7 +60,7 @@ class PortfolioController extends Controller
                 array_push($portfolios, ...$portfoliosByYears);
             }
 
-            
+
         $years = Cache::rememberForever("years", function (){
             return Portfolio::select(DB::raw('YEAR(`date`) as year'))->groupBy('year')->get();
         });
@@ -91,14 +100,14 @@ class PortfolioController extends Controller
 
     public function editPortfolioPage(Portfolio $portfolio){
         $tempPromoters = $portfolio->portfolioPromoter()->select('name')->get()->toArray();
-   $currentPromoters = implode(',',array_column($tempPromoters,'name'));    
-    $tempCategories = $portfolio->categories->toArray() ;
-    $currentCategories = implode(',',array_column($tempCategories,'id'));
-    return view('components.pages.admin.update-portfolio')
-    ->with('portfolio', $portfolio)
-    ->with('currentCategories', $currentCategories)
-    ->with('currentPromoters', $currentPromoters)
-    ->with('categories', Category::all()->sortByDesc('updated_at'));
+        $currentPromoters = implode(',',array_column($tempPromoters,'name'));
+        $tempCategories = $portfolio->categories->toArray() ;
+        $currentCategories = implode(',',array_column($tempCategories,'id'));
+        return view('components.pages.admin.update-portfolio')
+        ->with('portfolio', $portfolio)
+        ->with('currentCategories', $currentCategories)
+        ->with('currentPromoters', $currentPromoters)
+        ->with('categories', Category::all()->sortByDesc('updated_at'));
     }
 
     public function create(Request $req){
@@ -141,10 +150,24 @@ class PortfolioController extends Controller
             $portfolio->categories()->attach($categoryId);
         }
 
+        // ✅ COMPRESS IMAGES BEFORE STORING
         if($req->hasfile('imageFiles')) {
-            foreach($req->file('imageFiles') as $file)
-            {
-                $imageUrl = '/storage/'. $file->storePublicly('portfolio_images/'.$portfolio->id, 'public');
+            $manager = $this->getImageManager();
+
+            foreach($req->file('imageFiles') as $file) {
+                // COMPRESS: resize to max 1920px width, 75% quality
+                $compressed = $manager->read($file)
+                    ->scaleDown(width: 1280)  // Max 1920px wide, keeps aspect ratio
+                    ->toJpeg(quality: 75);    // 75% quality
+
+                // Generate unique filename
+                $filename = 'portfolio_images/' . $portfolio->id . '/' . uniqid() . '.jpg';
+
+                // Store compressed version
+                Storage::disk('public')->put($filename, (string) $compressed);
+
+                $imageUrl = '/storage/' . $filename;
+
                 $portfolio->portfolioImage()->create([
                     'image_url' => $imageUrl,
                     'portfolio_id' => $portfolio->id
@@ -162,7 +185,6 @@ class PortfolioController extends Controller
 
     public function update(Portfolio $portfolio,Request $req){
 
-        
         $deletedImages = $this->stringToArray($req['deletedImage']);
         $changedFields = $this->stringToArray($req['changedFields']);
         $resetedFields = $this->stringToArray($req['resetedFields']);
@@ -176,64 +198,77 @@ class PortfolioController extends Controller
             }
         }
 
-            foreach ($changedFields as $key => $field) {
-                switch ($field) {
-                    case 'title':
-                        $req->validate([
-                            'portfolioTitle' => 'required'
-                        ]);
-                        $portfolio->title = $req['portfolioTitle'];
-                        break;
-                    
-                    case 'time':
+        foreach ($changedFields as $key => $field) {
+            switch ($field) {
+                case 'title':
+                    $req->validate([
+                        'portfolioTitle' => 'required'
+                    ]);
+                    $portfolio->title = $req['portfolioTitle'];
+                    break;
+
+                case 'time':
+                    $req->validate([
+                        'time' => 'required'
+                    ]);
+                    $portfolio->date = $req['time'];
+                    break;
+                case 'categories':
+                    $req->validate([
+                        'categories' => 'required'
+                    ]);
+                    $currentCategories = $this->stringToArray($req['categories']);
+                    foreach ($currentCategories as $key => $categoryId) {
+                        $portfolio->categories()->findOr($categoryId,function () use($portfolio,$categoryId) {
+                            $portfolio->categories()->attach($categoryId);
+                        });
+                    }
+
+                    break;
+                case 'promoters':
                         $req->validate([
                             'time' => 'required'
                         ]);
-                        $portfolio->date = $req['time'];
-                        break;
-                    case 'categories':
-                        $req->validate([
-                            'categories' => 'required'
-                        ]);
-                        $currentCategories = $this->stringToArray($req['categories']);
-                        foreach ($currentCategories as $key => $categoryId) {
-                            $portfolio->categories()->findOr($categoryId,function () use($portfolio,$categoryId) {
-                                $portfolio->categories()->attach($categoryId);   
-                            });
-                        }
-
-                        break;
-                    case 'promoters':
-                            $req->validate([
-                                'time' => 'required'
+                        $currentPromoters = $this->stringToArray($req['promoters']);
+                        foreach ($currentPromoters as $key => $promoterName) {
+                            $portfolio->portfolioPromoter()->firstOrCreate([
+                                'name' => $promoterName
                             ]);
-                            $currentPromoters = $this->stringToArray($req['promoters']);
-                            foreach ($currentPromoters as $key => $promoterName) {
-                                $portfolio->portfolioPromoter()->firstOrCreate([
-                                    'name' => $promoterName
-                                ]);
-                            }
-                            break;
-                    default:
-                        # code...
+                        }
                         break;
-                }
+                default:
+                    # code...
+                    break;
             }
+        }
 
+        // ✅ COMPRESS NEW IMAGES BEFORE STORING
         if($req->hasfile('imageFiles')) {
             $req->validate([
                 "imageFiles" => 'required',
                 "imageFiles.*" => 'mimes:jpeg,jpg,png|max:25000',
             ]);
-            foreach($req->file('imageFiles') as $file)
-            {
-                $imageUrl = '/storage/'. $file->storePublicly('portfolio_images/'.$portfolio->id, 'public');
+
+            $manager = $this->getImageManager();
+
+            foreach($req->file('imageFiles') as $file) {
+                // COMPRESS: resize to max 1920px width, 75% quality
+                $compressed = $manager->read($file)
+                    ->scaleDown(width: 1920)
+                    ->toJpeg(quality: 75);
+
+                $filename = 'portfolio_images/' . $portfolio->id . '/' . uniqid() . '.jpg';
+                Storage::disk('public')->put($filename, (string) $compressed);
+
+                $imageUrl = '/storage/' . $filename;
+
                 $portfolio->portfolioImage()->create([
                     'image_url' => $imageUrl,
                     'portfolio_id' => $portfolio->id
                 ]);
             }
         }
+
         if (!(count($deletedImages) - $portfolio->portfolioImage()->count()) < 1) {
             foreach ($deletedImages as $key => $imageId) {
                 $portfolioImage = PortfolioImage::find($imageId);
@@ -251,7 +286,6 @@ class PortfolioController extends Controller
         return back()->with('status','gagal update portfolio');
     }
 
-    
     public function delete(Portfolio $portfolio){
         if (!is_object($portfolio)) {
            return  back()->with('portfolioStatus', 'portfolio gagal dihapus');
@@ -268,33 +302,43 @@ class PortfolioController extends Controller
         return  back()->with('portfolioStatus', 'portfolio berhasil dihapus');
     }
 
-    public function changeImage(PortfolioImage $image,Request $request){
+    // ✅ COMPRESS WHEN CHANGING SINGLE IMAGE
+    public function changeImage(PortfolioImage $image, Request $request){
         $request->validate([
-            'fileImage'
+            'fileImage' => 'required|mimes:jpeg,jpg,png|max:25000'
         ]);
-        Validator::validate($request->all(),[
-            'fileImage' => [
-                File::image()
-                ->max('25mb')
-                ]
-            ]);
+
         $deletedImagePath = str_replace("/storage/",'',$image->image_url);
         $file = $request->file('fileImage');
-        $newImageUrl = '/storage/'. $file->storePublicly('portolio_image', 'public');
+
+        // COMPRESS THE NEW IMAGE
+        $manager = $this->getImageManager();
+        $compressed = $manager->read($file)
+            ->scaleDown(width: 1920)
+            ->toJpeg(quality: 75);
+
+        $filename = 'portfolio_images/' . $image->portfolio_id . '/' . uniqid() . '.jpg';
+        Storage::disk('public')->put($filename, (string) $compressed);
+
+        $newImageUrl = '/storage/' . $filename;
         $image->image_url = $newImageUrl;
+
         if ($image->save()) {
             Storage::disk('public')->delete($deletedImagePath);
-            return back()->with("portfolioStatus","image berhasil diperbarui"); 
+            Cache::forget('portfolios');
+            return back()->with("portfolioStatus","image berhasil diperbarui");
         }
-            return back()->with("portfolioStatus","image gagal diperbarui"); 
+        return back()->with("portfolioStatus","image gagal diperbarui");
     }
+
     public function deleteImage(PortfolioImage $image){
         $deletedImagePath = str_replace("/storage/",'',$image->image_url);
         if ($image->delete()) {
             Storage::disk('public')->delete($deletedImagePath);
-            return back()->with("portfolioStatus","image berhasil dihapus"); 
+            Cache::forget('portfolios');
+            return back()->with("portfolioStatus","image berhasil dihapus");
         }
-        return back()->with("portfolioStatus","image gagal dihapus"); 
+        return back()->with("portfolioStatus","image gagal dihapus");
     }
 
     private function stringToArray($inputString){
