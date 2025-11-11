@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManager;
+use Intervention\Image\Facades\Image;
 use Intervention\Image\Drivers\Gd\Driver;
 
 class PortfolioController extends Controller
@@ -117,7 +118,7 @@ class PortfolioController extends Controller
             'portfolioTitle' => 'required',
             'time' => 'required',
             "imageFiles" => 'required',
-            "imageFiles.*" => 'mimes:jpeg,jpg,png|max:25000',
+            "imageFiles.*" => 'mimes:jpeg,jpg,png|max:10000',
         ]);
 
         $promoters = array();
@@ -150,23 +151,31 @@ class PortfolioController extends Controller
             $portfolio->categories()->attach($categoryId);
         }
 
-        // ✅ COMPRESS IMAGES BEFORE STORING
+
+        // ✅ CONVERT TO WEBP, COMPRESS AND STORE
         if($req->hasfile('imageFiles')) {
             $manager = $this->getImageManager();
 
             foreach($req->file('imageFiles') as $file) {
-                // COMPRESS: resize to max 1920px width, 75% quality
-                $compressed = $manager->read($file)
-                    ->scaleDown(width: 1280)  // Max 1920px wide, keeps aspect ratio
-                    ->toJpeg(quality: 75);    // 75% quality
+                // Get original filename without extension and sanitize it
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // Replace spaces and special chars with underscores
+                $sanitizedFilename = preg_replace('/[^A-Za-z0-9\-_]/', '_', $originalFilename);
 
-                // Generate unique filename
-                $filename = 'portfolio_images/' . $portfolio->id . '/' . uniqid() . '.jpg';
+                // Read image and convert to WebP
+                $img = $manager->read($file);
 
-                // Store compressed version
-                Storage::disk('public')->put($filename, (string) $compressed);
+                // Resize to max 1280px width and encode to WebP with 80% quality
+                $webpImage = $img->scaleDown(width: 1280)->toWebp(80);
 
-                $imageUrl = '/storage/' . $filename;
+                // Generate unique WebP filename with sanitized name + unique ID
+                $uniqueId = time() . uniqid();
+                $webpName = 'portfolio_images/' . $portfolio->id . '/' . $sanitizedFilename . '_' . $uniqueId . '.webp';
+
+                // Store the WebP image
+                Storage::disk('public')->put($webpName, (string) $webpImage);
+
+                $imageUrl = '/storage/' . $webpName;
 
                 $portfolio->portfolioImage()->create([
                     'image_url' => $imageUrl,
@@ -242,25 +251,32 @@ class PortfolioController extends Controller
             }
         }
 
-        // ✅ COMPRESS NEW IMAGES BEFORE STORING
+        // ✅ CONVERT TO WEBP, COMPRESS AND STORE NEW IMAGES
         if($req->hasfile('imageFiles')) {
             $req->validate([
                 "imageFiles" => 'required',
-                "imageFiles.*" => 'mimes:jpeg,jpg,png|max:25000',
+                "imageFiles.*" => 'mimes:jpeg,jpg,png|max:10000',
             ]);
 
             $manager = $this->getImageManager();
 
             foreach($req->file('imageFiles') as $file) {
-                // COMPRESS: resize to max 1920px width, 75% quality
-                $compressed = $manager->read($file)
-                    ->scaleDown(width: 1920)
-                    ->toJpeg(quality: 75);
+                // Get original filename without extension
+                $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
-                $filename = 'portfolio_images/' . $portfolio->id . '/' . uniqid() . '.jpg';
-                Storage::disk('public')->put($filename, (string) $compressed);
+                // Read image and convert to WebP
+                $img = $manager->read($file);
 
-                $imageUrl = '/storage/' . $filename;
+                // Resize to max 1920px width and encode to WebP with 80% quality
+                $webpImage = $img->scaleDown(width: 1920)->toWebp(80);
+
+                // Generate unique WebP filename
+                $webpName = 'portfolio_images/' . $portfolio->id . '/' . $filename . '_' . uniqid() . '.webp';
+
+                // Store the WebP image
+                Storage::disk('public')->put($webpName, (string) $webpImage);
+
+                $imageUrl = '/storage/' . $webpName;
 
                 $portfolio->portfolioImage()->create([
                     'image_url' => $imageUrl,
@@ -302,25 +318,32 @@ class PortfolioController extends Controller
         return  back()->with('portfolioStatus', 'portfolio berhasil dihapus');
     }
 
-    // ✅ COMPRESS WHEN CHANGING SINGLE IMAGE
+    // ✅ CONVERT TO WEBP AND COMPRESS WHEN CHANGING SINGLE IMAGE
     public function changeImage(PortfolioImage $image, Request $request){
         $request->validate([
-            'fileImage' => 'required|mimes:jpeg,jpg,png|max:25000'
+            'fileImage' => 'required|mimes:jpeg,jpg,png|max:10000'
         ]);
 
         $deletedImagePath = str_replace("/storage/",'',$image->image_url);
         $file = $request->file('fileImage');
 
-        // COMPRESS THE NEW IMAGE
+        // Get original filename without extension
+        $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+        // Read image and convert to WebP
         $manager = $this->getImageManager();
-        $compressed = $manager->read($file)
-            ->scaleDown(width: 1920)
-            ->toJpeg(quality: 75);
+        $img = $manager->read($file);
 
-        $filename = 'portfolio_images/' . $image->portfolio_id . '/' . uniqid() . '.jpg';
-        Storage::disk('public')->put($filename, (string) $compressed);
+        // Resize to max 1920px width and encode to WebP with 80% quality
+        $webpImage = $img->scaleDown(width: 1920)->toWebp(80);
 
-        $newImageUrl = '/storage/' . $filename;
+        // Generate unique WebP filename
+        $webpName = 'portfolio_images/' . $image->portfolio_id . '/' . $filename . '_' . uniqid() . '.webp';
+
+        // Store the WebP image
+        Storage::disk('public')->put($webpName, (string) $webpImage);
+
+        $newImageUrl = '/storage/' . $webpName;
         $image->image_url = $newImageUrl;
 
         if ($image->save()) {

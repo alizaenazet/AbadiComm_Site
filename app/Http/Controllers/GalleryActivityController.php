@@ -29,7 +29,7 @@ class GalleryActivityController extends Controller
         ->with('galleries',GalleryActivity::all()->sortByDesc('updated_at'));
     }
 
-    // ✅ COMPRESS ON UPLOAD
+    // ✅ CONVERT TO WEBP AND COMPRESS ON UPLOAD
     public function uploadGallery(Request $request){
         $request->validate([
             'fileImage'=> 'required',
@@ -37,22 +37,32 @@ class GalleryActivityController extends Controller
         ]);
         Validator::validate($request->all(),[
             'fileImage' => [
-                File::image()->max('25mb')
+                File::image()->max('10mb')
             ]
         ]);
 
         $file = $request->file('fileImage');
 
-        // COMPRESS BEFORE STORING
+        // Get original filename without extension and sanitize it
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        // Replace spaces and special chars with underscores
+        $sanitizedFilename = preg_replace('/[^A-Za-z0-9\-_]/', '_', $originalFilename);
+
+        // Read image and convert to WebP
         $manager = $this->getImageManager();
-        $compressed = $manager->read($file)
-            ->scaleDown(width: 1280)  // Max 1920px wide, keeps aspect ratio
-            ->toJpeg(quality: 75);    // 75% quality
+        $img = $manager->read($file);
 
-        $filename = 'gallery_activity/' . uniqid() . '.jpg';
-        Storage::disk('public')->put($filename, (string) $compressed);
+        // Resize to max 1280px width and encode to WebP with 80% quality
+        $webpImage = $img->scaleDown(width: 1280)->toWebp(80);
 
-        $ImageUrl = '/storage/' . $filename;
+        // Generate unique WebP filename
+        $uniqueId = time() . uniqid();
+        $webpName = 'gallery_activity/' . $sanitizedFilename . '_' . $uniqueId . '.webp';
+
+        // Store the WebP image
+        Storage::disk('public')->put($webpName, (string) $webpImage);
+
+        $ImageUrl = '/storage/' . $webpName;
 
         GalleryActivity::create([
             'image_url'=> $ImageUrl,
@@ -71,7 +81,7 @@ class GalleryActivityController extends Controller
         return redirect('/dashboard/galleries/');
     }
 
-    // ✅ COMPRESS ON UPDATE
+    // ✅ CONVERT TO WEBP AND COMPRESS ON UPDATE
     public function updateGallery(GalleryActivity $galleryActivity, Request $request){
         $updatedField = array();
         if (is_null($request['updated'])) {
@@ -90,23 +100,30 @@ class GalleryActivityController extends Controller
                 ]);
                 Validator::validate($request->all(),[
                     'fileImage' => [
-                        File::image()->max('25mb')
+                        File::image()->max('10mb')
                     ]
                 ]);
 
                 $deletedImagePath = str_replace("/storage/",'',$galleryActivity->image_url);
                 $file = $request->file('fileImage');
 
-                // COMPRESS THE NEW IMAGE
+                // Get original filename without extension
+                $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+                // Read image and convert to WebP
                 $manager = $this->getImageManager();
-                $compressed = $manager->read($file)
-                    ->scaleDown(width: 1920)
-                    ->toJpeg(quality: 75);
+                $img = $manager->read($file);
 
-                $filename = 'gallery_activity/' . uniqid() . '.jpg';
-                Storage::disk('public')->put($filename, (string) $compressed);
+                // Resize to max 1920px width and encode to WebP with 80% quality
+                $webpImage = $img->scaleDown(width: 1920)->toWebp(80);
 
-                $newImageUrl = '/storage/' . $filename;
+                // Generate unique WebP filename
+                $webpName = 'gallery_activity/' . $filename . '_' . uniqid() . '.webp';
+
+                // Store the WebP image
+                Storage::disk('public')->put($webpName, (string) $webpImage);
+
+                $newImageUrl = '/storage/' . $webpName;
                 $galleryActivity->image_url = $newImageUrl;
 
                 Storage::disk('public')->delete($deletedImagePath);
